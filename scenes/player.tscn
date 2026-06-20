@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c3xxx5ctyg4c"]
+
+[ext_resource type="Script" uid="uid://e8x24jq2471u" path="res://scripts/player.gd" id="1_3vyb7"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_smehm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_felse"]
+radius = 23.0
+
+[node name="RigidBody2D" type="RigidBody2D" unique_id=1065038276]
+gravity_scale = 0.0
+script = ExtResource("1_3vyb7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1659950872]
+position = Vector2(-1.9073486e-06, -1.9073486e-06)
+scale = Vector2(45.999996, 45.999992)
+texture = SubResource("PlaceholderTexture2D_smehm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493863236]
+shape = SubResource("CircleShape2D_felse")
