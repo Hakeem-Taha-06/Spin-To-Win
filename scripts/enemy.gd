@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 		State.IDLE:
 			if distance_to_player <= DETECT_RANGE:
 				CURRENT_STATE = State.FOLLOW
-				out_of_follow_timer = 2.0
+				out_of_follow_timer = out_of_follow_cooldown
 		State.FOLLOW:
 			if out_of_follow_timer > 0.0:
 				out_of_follow_timer -= delta
@@ -60,11 +60,12 @@ func _process(delta: float) -> void:
 			if attack_timer <= 0.0:
 				CURRENT_STATE = State.IDLE
 			
-	print(CURRENT_STATE)
+	print(linear_velocity)
 
 func _draw() -> void:
 	#debug line showing facing direction
-	draw_line(Vector2.ZERO, facing_direction * debug_line_length, Color.RED, 2.0)
+	var local_facing = facing_direction.rotated(-rotation)
+	draw_line(Vector2.ZERO, local_facing * debug_line_length, Color.RED, 2.0)
 	#debug circle showing detection range
 	draw_circle(Vector2.ZERO, DETECT_RANGE, Color.BLUE, false, 2.0)
 	draw_circle(Vector2.ZERO, ATTACK_RANGE, Color.RED, false, 2.0)
@@ -72,7 +73,7 @@ func _draw() -> void:
 func _physics_process(delta: float) -> void:
 	match CURRENT_STATE:
 		State.IDLE:
-			pass
+			apply_damp()
 		State.FOLLOW:
 			face_player()
 			if linear_velocity.length() < MAX_LINEAR_SPEED:
@@ -83,6 +84,12 @@ func _physics_process(delta: float) -> void:
 				apply_force(facing_direction*MOVE_FORCE*2)
 			
 	queue_redraw()
+
+func apply_damp():
+	if linear_velocity.length() > 0.5:
+		linear_velocity *= 0.95
+	else:
+		linear_velocity = Vector2.ZERO
 
 func face_player():
 	facing_direction = (player.global_position - global_position).normalized()

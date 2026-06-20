@@ -4,6 +4,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_felse"]
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7p1mj"]
+
 [node name="RigidBody2D" type="RigidBody2D" unique_id=641408842]
 gravity_scale = 0.0
 script = ExtResource("1_7p1mj")
@@ -12,3 +14,5 @@ script = ExtResource("1_7p1mj")
 shape = SubResource("CircleShape2D_felse")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1057105963]
+scale = Vector2(9.5, 9.5)
+texture = SubResource("PlaceholderTexture2D_7p1mj")
