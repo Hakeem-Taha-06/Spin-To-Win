@@ -10,7 +10,6 @@ var TORQUE := 10000.0
 var HEALTH := 100.0
 var DAMAGE := 10.0 
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	angular_velocity = 0.0

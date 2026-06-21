@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://c3xxx5ctyg4c"]
 
 [ext_resource type="Script" uid="uid://e8x24jq2471u" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://25ymcnh4uei5" path="res://assets/sprites/Top.png" id="2_g2els"]
+[ext_resource type="Script" uid="uid://cf1cjkchbkv2f" path="res://scripts/hit_box.gd" id="2_qhqgy"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_smehm"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 25.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_felse"]
 radius = 23.0
@@ -11,10 +14,17 @@ radius = 23.0
 gravity_scale = 0.0
 script = ExtResource("1_3vyb7")
 
+[node name="HitBox" type="Area2D" parent="." unique_id=321689412]
+script = ExtResource("2_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=842457331]
+shape = SubResource("CircleShape2D_g2els")
+debug_color = Color(0.9978743, 0, 0.16647226, 0.41960785)
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1659950872]
 position = Vector2(-1.9073486e-06, -1.9073486e-06)
-scale = Vector2(45.999996, 45.999992)
-texture = SubResource("PlaceholderTexture2D_smehm")
+scale = Vector2(2.7852507, 2.8296218)
+texture = ExtResource("2_g2els")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=493863236]
 shape = SubResource("CircleShape2D_felse")

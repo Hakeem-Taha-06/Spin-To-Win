@@ -9,31 +9,40 @@ var HEALTH := 100.0
 var DAMAGE := 10.0
 
 #behaviour/ movement 
-@export var DETECT_RANGE := 200.0
+@export var DETECT_RANGE := 400.0
 @export var ATTACK_RANGE := 100.0
+@export var ATTACK_FORCE_MULT := 3.0
 @export var TORQUE := 10000.0
 @export var MOVE_FORCE := 100.0
 @export var MAX_LINEAR_SPEED := 200.0
+@export var MAX_ATTACK_LINEAR_SPEED := 400
 @export var MAX_ANGULAR_SPEED := 30.0
 
 #states
 enum State{FOLLOW, IDLE, ATTACK}
 var CURRENT_STATE := State.IDLE
 var facing_direction := Vector2(0.0, 1.0)
+var isInvincible:= false
 
 #cooldown timers
 var out_of_follow_timer := 0.0
 var out_of_follow_cooldown := 2.0
 var attack_timer := 0.0
 var attack_duration := 2.0
+var invincibility_timer := 0.0
+var invincibility_duration := 2.0
 
+#debug
 @export var debug_line_length := 20.0
 
+#damage handling
+@onready var hurtbox = $HurtBox
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
+	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -43,6 +52,7 @@ func _process(delta: float) -> void:
 			if distance_to_player <= DETECT_RANGE:
 				CURRENT_STATE = State.FOLLOW
 				out_of_follow_timer = out_of_follow_cooldown
+				print("set out of follow timer")
 		State.FOLLOW:
 			if out_of_follow_timer > 0.0:
 				out_of_follow_timer -= delta
@@ -50,6 +60,11 @@ func _process(delta: float) -> void:
 			if distance_to_player <= ATTACK_RANGE:
 				CURRENT_STATE = State.ATTACK
 				attack_timer = attack_duration
+				print("set attack timer")
+				
+				
+			if distance_to_player <= DETECT_RANGE:
+				out_of_follow_timer = out_of_follow_cooldown
 				
 			if out_of_follow_timer <= 0.0:
 				CURRENT_STATE = State.IDLE
@@ -59,8 +74,9 @@ func _process(delta: float) -> void:
 			
 			if attack_timer <= 0.0:
 				CURRENT_STATE = State.IDLE
-			
-	print(linear_velocity)
+				
+	cooldowns(delta)
+
 
 func _draw() -> void:
 	#debug line showing facing direction
@@ -69,7 +85,8 @@ func _draw() -> void:
 	#debug circle showing detection range
 	draw_circle(Vector2.ZERO, DETECT_RANGE, Color.BLUE, false, 2.0)
 	draw_circle(Vector2.ZERO, ATTACK_RANGE, Color.RED, false, 2.0)
-	
+
+
 func _physics_process(delta: float) -> void:
 	match CURRENT_STATE:
 		State.IDLE:
@@ -78,12 +95,36 @@ func _physics_process(delta: float) -> void:
 			face_player()
 			if linear_velocity.length() < MAX_LINEAR_SPEED:
 				apply_force(facing_direction*MOVE_FORCE)
+			else:
+				linear_velocity = linear_velocity.normalized()*MAX_LINEAR_SPEED
 		State.ATTACK:
 			face_player()
-			if linear_velocity.length() < MAX_LINEAR_SPEED:
-				apply_force(facing_direction*MOVE_FORCE*2)
+			if linear_velocity.length() < MAX_ATTACK_LINEAR_SPEED:
+				apply_force(facing_direction*MOVE_FORCE*ATTACK_FORCE_MULT)
 			
 	queue_redraw()
+
+
+func cooldowns(delta: float):
+	if isInvincible and invincibility_timer > 0:
+		invincibility_timer -= delta
+	if invincibility_timer <=0:
+		isInvincible = false
+		
+
+
+func _on_hurtbox_area_entered(area: Hitbox):
+	if area.has_method("get_damage"):
+		take_damage(area.get_damage())
+
+#helper methods
+func take_damage(amout: float):
+	if !isInvincible:
+		invincibility_timer = invincibility_duration
+		isInvincible = true
+		print("ouch")
+		
+
 
 func apply_damp():
 	if linear_velocity.length() > 0.5:
