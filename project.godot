@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="SPIN_TO_WIN"
-run/main_scene="uid://dilqhppx6hecw"
+run/main_scene="uid://dgwr0olknpgne"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameState="*uid://pchsq0sra4e5"
 
 [display]
 

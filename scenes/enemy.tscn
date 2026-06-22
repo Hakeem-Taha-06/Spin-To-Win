@@ -4,16 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://b2jpic6l3gsnf" path="res://assets/sprites/Top2.png" id="2_md0e3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
-radius = 5.0990195
+radius = 19.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bmj3m"]
+radius = 19.104973
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_felse"]
-radius = 5.0
+radius = 18.110771
 
 [node name="RigidBody2D" type="RigidBody2D" unique_id=641408842]
 gravity_scale = 0.0
 script = ExtResource("1_7p1mj")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=102153131]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1033933920]
 shape = SubResource("CircleShape2D_md0e3")
@@ -21,8 +26,15 @@ debug_color = Color(0.9932235, 0, 0.2474781, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1057105963]
 position = Vector2(-7.4505806e-07, -3.874302e-07)
-scale = Vector2(0.6083085, 0.605908)
+scale = Vector2(2.181831, 2.274237)
 texture = ExtResource("2_md0e3")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=1718928008]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=4156298]
+shape = SubResource("CircleShape2D_bmj3m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1160005802]
 shape = SubResource("CircleShape2D_felse")

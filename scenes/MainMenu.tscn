@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dgwr0olknpgne"]
+
+[ext_resource type="Script" uid="uid://cah2jbhx3vh5d" path="res://scripts/main_menu.gd" id="1_yqorp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yqorp"]
+font_size = 100
+
+[node name="MainMenu" type="Control" unique_id=974940186]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 14.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yqorp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1137515590]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 279.0
+offset_right = 668.0
+offset_bottom = 411.0
+alignment = 1
+
+[node name="WeaponLabel" type="Label" parent="VBoxContainer" unique_id=1635183200]
+layout_mode = 2
+text = "Weapon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WeaponList" type="OptionButton" parent="VBoxContainer" unique_id=977209432]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1646398635]
+layout_mode = 2
+text = "Speed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpeedSlider" type="HSlider" parent="VBoxContainer" unique_id=8030815]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer" unique_id=1381319338]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="." unique_id=671235226]
+layout_mode = 0
+offset_left = 427.0
+offset_top = 88.0
+offset_right = 681.0
+offset_bottom = 225.0
+text = "TITLE"
+label_settings = SubResource("LabelSettings_yqorp")
+
+[node name="SpeedValue" type="Label" parent="." unique_id=1992577304]
+layout_mode = 0
+offset_left = 675.0
+offset_top = 360.0
+offset_right = 715.0
+offset_bottom = 383.0
+text = "200"
+horizontal_alignment = 1

@@ -37,12 +37,14 @@ var invincibility_duration := 2.0
 
 #damage handling
 @onready var hurtbox = $HurtBox
+var WEAPON : Weapon
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	_equip_weapon()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -112,13 +114,12 @@ func cooldowns(delta: float):
 		isInvincible = false
 		
 
-
-func _on_hurtbox_area_entered(area: Hitbox):
+func _on_hurtbox_area_entered(area: Area2D):
 	if area.has_method("get_damage"):
 		take_damage(area.get_damage())
 
 #helper methods
-func take_damage(amout: float):
+func take_damage(amount: float):
 	if !isInvincible:
 		invincibility_timer = invincibility_duration
 		isInvincible = true
@@ -135,4 +136,12 @@ func apply_damp():
 func face_player():
 	facing_direction = (player.global_position - global_position).normalized()
 	
+func _equip_weapon():
+	var WEAPON_SCENE = preload("res://scenes/weapons/axe.tscn")
+	WEAPON = WEAPON_SCENE.instantiate() as Weapon
+	if WEAPON == null:
+		push_error("Weapon scene does not have a Weapon script attached or doesn't exist")
+		return
 	
+	add_child(WEAPON)
+	WEAPON.position = Vector2(0.0,-10.0)
