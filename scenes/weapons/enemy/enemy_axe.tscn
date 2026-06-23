@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://blqhk711xttm5"]
+
+[ext_resource type="PackedScene" uid="uid://q6aukbfcmhl2" path="res://scenes/weapons/axe.tscn" id="1_e6h7m"]
+
+[node name="Axe" unique_id=11842082 instance=ExtResource("1_e6h7m")]
+collision_layer = 16
+collision_mask = 3
+
+[node name="Area2D" parent="." index="1" unique_id=2014773401]
+collision_layer = 128
+collision_mask = 0

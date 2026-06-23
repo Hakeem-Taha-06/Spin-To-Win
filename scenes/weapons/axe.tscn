@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://q6aukbfcmhl2"]
 
 [ext_resource type="Script" uid="uid://dg00cyvrycby2" path="res://scripts/weapons/axe.gd" id="1_sxbk6"]
+[ext_resource type="Texture2D" uid="uid://cp6nfiad77714" path="res://assets/sprites/player/spinny_axe.png" id="2_5wbh6"]
 [ext_resource type="Script" uid="uid://cf1cjkchbkv2f" path="res://scripts/hit_box.gd" id="2_w43rl"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_atlka"]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_felse"]
-size = Vector2(20, 48)
+size = Vector2(25.480686, 45.5)
 
 [node name="Axe" type="RigidBody2D" unique_id=11842082]
 collision_layer = 2
@@ -15,12 +14,14 @@ gravity_scale = 0.0
 freeze = true
 script = ExtResource("1_sxbk6")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1150217410]
-position = Vector2(0, -13.999998)
-scale = Vector2(19.92, 47.82782)
-texture = SubResource("PlaceholderTexture2D_atlka")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=719819365]
+position = Vector2(0, -13)
+scale = Vector2(3, 3)
+texture = ExtResource("2_5wbh6")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2014773401]
+position = Vector2(-1.1920929e-07, -25)
+scale = Vector2(2.2233458, 0.83741426)
 script = ExtResource("2_w43rl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=116394895]
@@ -29,5 +30,6 @@ shape = SubResource("RectangleShape2D_felse")
 debug_color = Color(0.99999994, 0.009396952, 0.06519919, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2050949162]
-position = Vector2(0, -14)
+position = Vector2(0, -10.5)
+scale = Vector2(1.8837798, 1.8601614)
 shape = SubResource("RectangleShape2D_felse")

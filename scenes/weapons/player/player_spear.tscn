@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://d3bbv027q6amx"]
+
+[ext_resource type="PackedScene" uid="uid://b8q7uxdi64aq6" path="res://scenes/weapons/spear.tscn" id="1_vyxrg"]
+
+[node name="Spear" unique_id=11842082 instance=ExtResource("1_vyxrg")]
+collision_layer = 8
+collision_mask = 5
+
+[node name="Area2D" parent="." index="0" unique_id=2014773401]
+collision_layer = 256
+collision_mask = 0

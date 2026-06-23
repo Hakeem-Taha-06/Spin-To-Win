@@ -30,7 +30,7 @@ var out_of_follow_cooldown := 2.0
 var attack_timer := 0.0
 var attack_duration := 2.0
 var invincibility_timer := 0.0
-var invincibility_duration := 2.0
+var invincibility_duration := 0.25
 
 #debug
 @export var debug_line_length := 20.0
@@ -116,17 +116,39 @@ func cooldowns(delta: float):
 
 func _on_hurtbox_area_entered(area: Area2D):
 	if area.has_method("get_damage"):
-		take_damage(area.get_damage())
-
-#helper methods
-func take_damage(amount: float):
-	if !isInvincible:
-		invincibility_timer = invincibility_duration
-		isInvincible = true
-		print("ouch")
+		take_damage(area.get_damage(), area)
 		
-
-
+func take_damage(amount: float, area: Area2D):
+	if isInvincible:
+		return
+	
+	invincibility_timer = invincibility_duration
+	isInvincible = true
+	
+	#slowdown effect
+	Engine.time_scale = 0.2
+	get_tree().create_timer(0.2, true, false, true).timeout.connect(
+		func(): Engine.time_scale = 1.0
+	)
+	
+	var knockback_dir = (global_position - area.global_position).normalized()
+	#                       direction   *    knockback force magnitude
+	var knockback_force = knockback_dir * area.get_parent().get_knockback()
+	
+	apply_impulse(knockback_force)
+	
+	# angular knockback (had to rely on ai for this one)
+	# offset = vector from enemy center to hit point (weapon position in local space)
+	var hit_offset = area.global_position - global_position
+	# 2D cross product: positive = clockwise spin, negative = counter-clockwise
+	var torque_direction = hit_offset.cross(-knockback_dir)
+	apply_torque_impulse(torque_direction * area.get_parent().KNOCKBACK)
+	
+	HEALTH -= amount
+	if HEALTH <= 0:
+		trigger_death()
+		
+#helper methods
 func apply_damp():
 	if linear_velocity.length() > 0.5:
 		linear_velocity *= 0.95
@@ -136,12 +158,17 @@ func apply_damp():
 func face_player():
 	facing_direction = (player.global_position - global_position).normalized()
 	
+func trigger_death():
+	#wait a little bit, disable collision, play some effects etc...
+	queue_free()
+	
 func _equip_weapon():
-	var WEAPON_SCENE = preload("res://scenes/weapons/axe.tscn")
-	WEAPON = WEAPON_SCENE.instantiate() as Weapon
+	var weapon_type = GameState.weapon_list.pick_random()
+	WEAPON = GameState.get_weapon(weapon_type, "enemy").instantiate() as Weapon
 	if WEAPON == null:
 		push_error("Weapon scene does not have a Weapon script attached or doesn't exist")
 		return
 	
 	add_child(WEAPON)
 	WEAPON.position = Vector2(0.0,-10.0)
+	$Sprite2D.move_to_front()

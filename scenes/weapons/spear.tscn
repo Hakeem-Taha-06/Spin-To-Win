@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dg00cyvrycby2" path="res://scripts/weapons/axe.gd" id="1_f4mc5"]
 [ext_resource type="Script" uid="uid://cf1cjkchbkv2f" path="res://scripts/hit_box.gd" id="2_osdwm"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_atlka"]
+[ext_resource type="Texture2D" uid="uid://d37e3i7r04il8" path="res://assets/sprites/player/spinny_spear.png" id="2_pwwd2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_felse"]
-size = Vector2(20, 48)
+size = Vector2(8, 48)
 
 [node name="Spear" type="RigidBody2D" unique_id=11842082]
 collision_layer = 2
@@ -15,12 +14,9 @@ gravity_scale = 0.0
 freeze = true
 script = ExtResource("1_f4mc5")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1150217410]
-position = Vector2(0, -13.999998)
-scale = Vector2(19.92, 47.82782)
-texture = SubResource("PlaceholderTexture2D_atlka")
-
 [node name="Area2D" type="Area2D" parent="." unique_id=2014773401]
+position = Vector2(0, -30.999998)
+scale = Vector2(0.98608905, 0.1845521)
 script = ExtResource("2_osdwm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=116394895]
@@ -31,3 +27,7 @@ debug_color = Color(0.99999994, 0.009396952, 0.06519919, 0.41960785)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2050949162]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_felse")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1284620031]
+position = Vector2(0, -14)
+texture = ExtResource("2_pwwd2")

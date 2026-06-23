@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://u0ujwo51xvxn"]
+
+[ext_resource type="PackedScene" uid="uid://1wikh3q2tmtt" path="res://scenes/weapons/sword.tscn" id="1_80ebx"]
+
+[node name="Sword" unique_id=11842082 instance=ExtResource("1_80ebx")]
+collision_layer = 8
+collision_mask = 5
+
+[node name="Area2D" parent="." index="0" unique_id=2014773401]
+collision_layer = 256
+collision_mask = 0

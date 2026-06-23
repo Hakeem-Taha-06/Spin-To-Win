@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://clsbgkt54qwrr"]
+
+[ext_resource type="PackedScene" uid="uid://q6aukbfcmhl2" path="res://scenes/weapons/axe.tscn" id="1_6ckqe"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6ckqe"]
+load_path = "res://.godot/imported/spinny_axe.png-31cc2df75bb8c2e1af8c901b89b0d913.ctex"
+
+[node name="Axe" unique_id=11842082 instance=ExtResource("1_6ckqe")]
+collision_layer = 8
+collision_mask = 5
+
+[node name="Sprite2D" parent="." index="0" unique_id=719819365]
+texture = SubResource("CompressedTexture2D_6ckqe")
+
+[node name="Area2D" parent="." index="1" unique_id=2014773401]
+collision_layer = 256
+collision_mask = 0
