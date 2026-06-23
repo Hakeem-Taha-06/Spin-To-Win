@@ -147,7 +147,8 @@ func take_damage(amount: float, area: Area2D):
 	
 	HEALTH -= amount
 	if HEALTH <= 0:
-		trigger_death()
+		pass
+		#trigger_death()
 		
 #helper methods
 func apply_damp():

@@ -4,7 +4,7 @@
 
 [node name="Spear" unique_id=11842082 instance=ExtResource("1_vyxrg")]
 collision_layer = 8
-collision_mask = 5
+collision_mask = 21
 
 [node name="Area2D" parent="." index="0" unique_id=2014773401]
 collision_layer = 256

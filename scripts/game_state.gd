@@ -25,6 +25,7 @@ var weapons = {
 		} ,
 }
 
+var current_level := 0
 var weapon_list = weapons.keys()
 
 func _ready() -> void:

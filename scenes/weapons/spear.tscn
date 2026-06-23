@@ -15,8 +15,9 @@ freeze = true
 script = ExtResource("1_f4mc5")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2014773401]
-position = Vector2(0, -30.999998)
-scale = Vector2(0.98608905, 0.1845521)
+position = Vector2(-34, -14)
+rotation = -1.5707964
+scale = Vector2(2, 0.375)
 script = ExtResource("2_osdwm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=116394895]
@@ -26,8 +27,12 @@ debug_color = Color(0.99999994, 0.009396952, 0.06519919, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2050949162]
 position = Vector2(0, -14)
+rotation = -1.5707964
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_felse")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1284620031]
 position = Vector2(0, -14)
+rotation = -1.5707964
+scale = Vector2(2, 2)
 texture = ExtResource("2_pwwd2")
