@@ -46,6 +46,7 @@ layout_mode = 2
 [node name="StartButton" type="Button" parent="VBoxContainer" unique_id=1381319338]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+text = "Start"
 
 [node name="Label" type="Label" parent="." unique_id=671235226]
 layout_mode = 0

@@ -17,6 +17,11 @@ func _ready() -> void:
 	speed_slider.value = 200.0
 	
 	start_button.pressed.connect(_on_start_button_pressed)
+	# find and select the saved weapon in the list
+	for i in weapon_list.item_count:
+		if weapon_list.get_item_text(i) == GameState.player_weapon:
+			weapon_list.select(i)
+			break
 
 func _process(delta: float) -> void:
 	speed_value.text = "{0}".format([speed_slider.value])
@@ -26,4 +31,5 @@ func _on_start_button_pressed():
 	var selected_speed: float = speed_slider.value
 	GameState.player_weapon = selected_weapon
 	GameState.player_speed = selected_speed
+	GameState.save_settings()
 	get_tree().change_scene_to_file("res://scenes/game.tscn")

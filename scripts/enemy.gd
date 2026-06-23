@@ -115,8 +115,9 @@ func cooldowns(delta: float):
 		
 
 func _on_hurtbox_area_entered(area: Area2D):
-	if area.has_method("get_damage"):
-		take_damage(area.get_damage(), area)
+	if area.has_method("get_damage") and player.has_method("get_damage"):
+		var total_damage: float = area.get_damage() + player.get_damage() 
+		take_damage(total_damage, area)
 		
 func take_damage(amount: float, area: Area2D):
 	if isInvincible:

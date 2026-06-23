@@ -78,10 +78,12 @@ gravity_scale = 0.0
 script = ExtResource("1_3vyb7")
 
 [node name="MoveEffects" type="GPUParticles2D" parent="." unique_id=1315268908]
+emitting = false
 amount = 30
 process_material = SubResource("ParticleProcessMaterial_g2els")
 
 [node name="BrakeEffect" type="GPUParticles2D" parent="." unique_id=1718665626]
+emitting = false
 amount = 1
 texture = ExtResource("2_qhqgy")
 process_material = SubResource("ParticleProcessMaterial_dqkch")

@@ -16,7 +16,7 @@ var WEAPON : Weapon
 
 var isInvincible:= false
 var invincibility_timer := 0.0
-var invincibility_duration := 2.0
+var invincibility_duration := 1.0
 
 @onready var move_effects: GPUParticles2D = $MoveEffects
 @onready var brake_effect: GPUParticles2D = $BrakeEffect
@@ -166,3 +166,6 @@ func apply_damp():
 		linear_velocity *= 0.95
 	else:
 		linear_velocity = Vector2.ZERO
+
+func get_damage() -> float:
+	return DAMAGE
