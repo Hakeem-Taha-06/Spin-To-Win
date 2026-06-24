@@ -3,6 +3,20 @@
 [ext_resource type="Script" uid="uid://cxnlgkae2u1rh" path="res://scripts/enemy.gd" id="1_7p1mj"]
 [ext_resource type="Texture2D" uid="uid://b2jpic6l3gsnf" path="res://assets/sprites/Top2.png" id="2_md0e3"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md0e3"]
+bg_color = Color(0, 0, 0, 0.3254902)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ra3w"]
+bg_color = Color(0.6, 0.036000002, 0.036000002, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
 radius = 19.0
 
@@ -25,6 +39,20 @@ collision_layer = 4
 collision_mask = 15
 gravity_scale = 0.0
 script = ExtResource("1_7p1mj")
+
+[node name="HealthBarPivot" type="Node2D" parent="." unique_id=1635651609]
+
+[node name="HealthBar" type="ProgressBar" parent="HealthBarPivot" unique_id=744460201]
+custom_minimum_size = Vector2(80, 10)
+custom_maximum_size = Vector2(80, 10)
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 40.0
+offset_bottom = -22.0
+theme_override_styles/background = SubResource("StyleBoxFlat_md0e3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4ra3w")
+value = 50.0
+show_percentage = false
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=102153131]
 collision_layer = 64

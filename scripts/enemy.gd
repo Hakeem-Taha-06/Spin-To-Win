@@ -40,6 +40,9 @@ var invincibility_duration := 0.25
 @onready var hit_particles: GPUParticles2D = $HitParticles
 var WEAPON : Weapon
 @export var WEAPON_SCENE : PackedScene
+@onready var health_bar_pivot: Node2D = $HealthBarPivot
+@onready var health_bar: ProgressBar = $HealthBarPivot/HealthBar
+var health_bar_original_position : Vector2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -49,6 +52,9 @@ func _ready() -> void:
 	hit_particles.finished.connect(_on_hit_particles_finished)
 	_equip_weapon()
 	add_to_group("enemy")
+	health_bar_original_position = health_bar_pivot.position
+	health_bar.min_value = 0.0
+	health_bar.max_value = HEALTH
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -78,7 +84,10 @@ func _process(delta: float) -> void:
 			
 			if attack_timer <= 0.0:
 				CURRENT_STATE = State.IDLE
-				
+	
+	health_bar_pivot.rotation = (-rotation)
+	health_bar_pivot.position = health_bar_original_position
+	health_bar.value = HEALTH
 	cooldowns(delta)
 
 
