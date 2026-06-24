@@ -30,6 +30,7 @@ var weapon_list = weapons.keys()
 
 var levels = [
 	"res://scenes/levels/level1.tscn",
+	"res://scenes/levels/level2.tscn",
 ]
 
 var total_score := 0.0
@@ -43,6 +44,7 @@ func start_game():
 func end_level():
 	current_level += 1
 	if current_level >= levels.size():
+		current_level = 0 #temporary, there should be a game_end function that resets everything
 		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 		#switch to end screen or boss level
 	else:

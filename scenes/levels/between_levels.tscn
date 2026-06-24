@@ -1,12 +1,110 @@
 [gd_scene format=3 uid="uid://b5k3yuagvo4y2"]
 
 [ext_resource type="Script" uid="uid://qiysu13fcf4a" path="res://scripts/between_levels.gd" id="1_y6mtv"]
+[ext_resource type="StyleBox" uid="uid://c7m40oknfr3pt" path="res://style_box_flat.res" id="2_w8iej"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htb6i"]
+bg_color = Color(0.09, 0.09, 0.09, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.44, 0.123199984, 0.123199984, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8iej"]
+bg_color = Color(0.15, 0.15, 0.15, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.66, 0.57992, 0.2904, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [node name="BetweenLevels" type="Control" unique_id=685248208]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 270.0
+offset_top = -1.0
+offset_right = 270.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y6mtv")
+
+[node name="HealthButton" type="Button" parent="." unique_id=1764910608]
+custom_minimum_size = Vector2(260, 400)
+layout_mode = 0
+offset_left = -118.0
+offset_top = 106.0
+offset_right = 142.0
+offset_bottom = 506.0
+theme_override_styles/normal = ExtResource("2_w8iej")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_htb6i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w8iej")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_htb6i")
+keep_pressed_outside = true
+text = "HEALTH UPGRADE:
+
+
+
+
++100 HEALTH"
+autowrap_trim_flags = 0
+
+[node name="DamageButton" type="Button" parent="." unique_id=1881738095]
+custom_minimum_size = Vector2(260, 400)
+layout_mode = 0
+offset_left = 182.0
+offset_top = 106.0
+offset_right = 442.0
+offset_bottom = 506.0
+theme_override_styles/normal = ExtResource("2_w8iej")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_htb6i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w8iej")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_htb6i")
+keep_pressed_outside = true
+text = "DAMAGE UPGRADE:
+
+
+
+
++5 DAMAGE"
+autowrap_trim_flags = 0
+
+[node name="SpeedButton" type="Button" parent="." unique_id=1070184905]
+custom_minimum_size = Vector2(260, 400)
+layout_mode = 0
+offset_left = 475.0
+offset_top = 106.0
+offset_right = 735.0
+offset_bottom = 506.0
+theme_override_styles/normal = ExtResource("2_w8iej")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_htb6i")
+theme_override_styles/hover = SubResource("StyleBoxFlat_w8iej")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_htb6i")
+keep_pressed_outside = true
+text = "SPEED UPGRADE:
+
+
+
+
++1 SPEED"
+autowrap_trim_flags = 0
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=124304347]
+layout_mode = 0
+offset_left = -266.0
+offset_top = 22.0
+offset_right = -105.0
+offset_bottom = 68.0
+horizontal_alignment = 1
+vertical_alignment = 1

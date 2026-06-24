@@ -13,7 +13,7 @@ config_version=5
 config/name="SPIN_TO_WIN"
 run/main_scene="uid://dgwr0olknpgne"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://do4yaktxwnddk"
 
 [autoload]
 

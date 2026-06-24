@@ -48,7 +48,7 @@ func _process(delta: float) -> void:
 		# can shrink to (0.2, 0.2), and starts at whatever is set in combo_label_start_scale
 		combo_label.scale = (Vector2.ONE/5).lerp(combo_label_start_scale, t)
 	
-	score_label.text = "Score: " + str(int(accumulative_score))
+	score_label.text = "Total Score: " + str(int(GameState.total_score)) +" Level Score: "+ str(int(accumulative_score))
 	
 	cooldowns(delta)
 
