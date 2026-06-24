@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dg00cyvrycby2" path="res://scripts/weapons/axe.gd" id="1_sxbk6"]
 [ext_resource type="Texture2D" uid="uid://cp6nfiad77714" path="res://assets/sprites/player/spinny_axe.png" id="2_5wbh6"]
-[ext_resource type="Script" uid="uid://cf1cjkchbkv2f" path="res://scripts/hit_box.gd" id="2_w43rl"]
+[ext_resource type="Script" uid="uid://cf1cjkchbkv2f" path="res://scripts/entities/hit_box.gd" id="2_w43rl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_felse"]
 size = Vector2(25.480686, 45.5)

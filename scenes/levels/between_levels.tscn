@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b5k3yuagvo4y2"]
 
-[ext_resource type="Script" uid="uid://qiysu13fcf4a" path="res://scripts/between_levels.gd" id="1_y6mtv"]
+[ext_resource type="Script" uid="uid://qiysu13fcf4a" path="res://scripts/core/between_levels.gd" id="1_y6mtv"]
 [ext_resource type="StyleBox" uid="uid://c7m40oknfr3pt" path="res://style_box_flat.res" id="2_w8iej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htb6i"]
@@ -77,7 +77,7 @@ text = "DAMAGE UPGRADE:
 
 
 
-+5 DAMAGE"
++20 DAMAGE"
 autowrap_trim_flags = 0
 
 [node name="SpeedButton" type="Button" parent="." unique_id=1070184905]

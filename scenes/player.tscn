@@ -1,8 +1,22 @@
 [gd_scene format=3 uid="uid://c3xxx5ctyg4c"]
 
-[ext_resource type="Script" uid="uid://e8x24jq2471u" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://e8x24jq2471u" path="res://scripts/entities/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://bfb0jghcvaqp8" path="res://assets/sprites/smoke.png" id="2_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://do4yaktxwnddk" path="res://assets/sprites/player/spinny_knight.png" id="3_qhqgy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md0e3"]
+bg_color = Color(0, 0, 0, 0.3254902)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ra3w"]
+bg_color = Color(0.6, 0.036000002, 0.036000002, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="Gradient" id="Gradient_g2els"]
 offsets = PackedFloat32Array(0, 0.81781375)
@@ -84,6 +98,20 @@ collision_mask = 21
 gravity_scale = 0.0
 script = ExtResource("1_3vyb7")
 
+[node name="HealthBarPivot" type="Node2D" parent="." unique_id=1894972772]
+
+[node name="HealthBar" type="ProgressBar" parent="HealthBarPivot" unique_id=854693150]
+custom_minimum_size = Vector2(80, 10)
+custom_maximum_size = Vector2(80, 10)
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 40.0
+offset_bottom = -22.0
+theme_override_styles/background = SubResource("StyleBoxFlat_md0e3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4ra3w")
+value = 50.0
+show_percentage = false
+
 [node name="MoveEffects" type="GPUParticles2D" parent="." unique_id=1315268908]
 emitting = false
 amount = 30
@@ -112,6 +140,6 @@ shape = SubResource("CircleShape2D_felse")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1659950872]
 position = Vector2(0, -5)
-rotation = 3.137972
+rotation = 3.1415927
 scale = Vector2(2.7852504, 2.8296216)
 texture = ExtResource("3_qhqgy")

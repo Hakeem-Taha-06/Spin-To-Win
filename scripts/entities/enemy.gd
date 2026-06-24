@@ -42,7 +42,6 @@ var WEAPON : Weapon
 @export var WEAPON_SCENE : PackedScene
 @onready var health_bar_pivot: Node2D = $HealthBarPivot
 @onready var health_bar: ProgressBar = $HealthBarPivot/HealthBar
-var health_bar_original_position : Vector2
 
 
 # Called when the node enters the scene tree for the first time.
@@ -52,7 +51,6 @@ func _ready() -> void:
 	hit_particles.finished.connect(_on_hit_particles_finished)
 	_equip_weapon()
 	add_to_group("enemy")
-	health_bar_original_position = health_bar_pivot.position
 	health_bar.min_value = 0.0
 	health_bar.max_value = HEALTH
 
@@ -86,10 +84,8 @@ func _process(delta: float) -> void:
 				CURRENT_STATE = State.IDLE
 	
 	health_bar_pivot.rotation = (-rotation)
-	health_bar_pivot.position = health_bar_original_position
 	health_bar.value = HEALTH
 	cooldowns(delta)
-
 
 func _draw() -> void:
 	#debug line showing facing direction
@@ -99,6 +95,7 @@ func _draw() -> void:
 	draw_circle(Vector2.ZERO, DETECT_RANGE, Color.BLUE, false, 2.0)
 	draw_circle(Vector2.ZERO, ATTACK_RANGE, Color.RED, false, 2.0)
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
 	match CURRENT_STATE:
 		State.IDLE:

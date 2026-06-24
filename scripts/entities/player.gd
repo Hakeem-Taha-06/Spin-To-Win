@@ -10,7 +10,7 @@ var BRAKE_OFFSET := 5.0
 
 var TORQUE := 10000.0
 
-var HEALTH := 100.0
+var HEALTH := 200.0
 var DAMAGE := 10.0 
 var WEAPON : Weapon
 
@@ -20,6 +20,8 @@ var invincibility_duration := 1.0
 
 @onready var move_effects: GPUParticles2D = $MoveEffects
 @onready var brake_effect: GPUParticles2D = $BrakeEffect
+@onready var health_bar_pivot: Node2D = $HealthBarPivot
+@onready var health_bar: ProgressBar = $HealthBarPivot/HealthBar
 
 #damage handling
 @onready var hurtbox = $HurtBox
@@ -29,11 +31,15 @@ func _ready() -> void:
 	angular_velocity = 0.0
 	linear_velocity = Vector2(0.0, 0.0)
 	LINEAR_SPEED = GameState.player_speed
+	HEALTH = GameState.player_health
+	DAMAGE = GameState.player_damage
 	MAX_LINEAR_SPEED = LINEAR_SPEED
 	add_to_group("player")
 	_equip_weapon()
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
 	brake_effect.finished.connect(_on_brake_effect_finished)
+	health_bar.min_value = 0.0
+	health_bar.max_value = HEALTH
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -41,6 +47,8 @@ func _physics_process(delta: float) -> void:
 	handle_torque()
 	
 func _process(delta: float)->void:
+	health_bar_pivot.rotation = (-rotation)
+	health_bar.value = HEALTH
 	cooldowns(delta)
 
 func handle_torque():
