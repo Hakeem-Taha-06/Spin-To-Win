@@ -32,4 +32,4 @@ func _on_start_button_pressed():
 	GameState.player_weapon = selected_weapon
 	GameState.player_speed = selected_speed
 	GameState.save_settings()
-	get_tree().change_scene_to_file("res://scenes/game.tscn")
+	GameState.start_game()

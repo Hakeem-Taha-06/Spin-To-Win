@@ -12,6 +12,14 @@ radius = 19.104973
 [sub_resource type="CircleShape2D" id="CircleShape2D_felse"]
 radius = 18.110771
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_felse"]
+particle_flag_disable_z = true
+spread = 5.817
+initial_velocity_min = 312.71
+initial_velocity_max = 328.33
+gravity = Vector3(0, 0, 0)
+color = Color(0.9695, 1, 0.39, 1)
+
 [node name="RigidBody2D" type="RigidBody2D" unique_id=641408842]
 collision_layer = 4
 collision_mask = 15
@@ -40,3 +48,10 @@ shape = SubResource("CircleShape2D_bmj3m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1160005802]
 shape = SubResource("CircleShape2D_felse")
+
+[node name="HitParticles" type="GPUParticles2D" parent="." unique_id=1066091451]
+emitting = false
+amount = 30
+one_shot = true
+explosiveness = 0.83
+process_material = SubResource("ParticleProcessMaterial_felse")

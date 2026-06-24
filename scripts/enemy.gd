@@ -5,7 +5,7 @@ class_name Enemy
 var player : Player = null
 
 #in-game stats
-var HEALTH := 100.0
+var HEALTH := 200.0
 var DAMAGE := 10.0
 
 #behaviour/ movement 
@@ -37,14 +37,18 @@ var invincibility_duration := 0.25
 
 #damage handling
 @onready var hurtbox = $HurtBox
+@onready var hit_particles: GPUParticles2D = $HitParticles
 var WEAPON : Weapon
+@export var WEAPON_SCENE : PackedScene
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("player")
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	hit_particles.finished.connect(_on_hit_particles_finished)
 	_equip_weapon()
+	add_to_group("enemy")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -54,7 +58,7 @@ func _process(delta: float) -> void:
 			if distance_to_player <= DETECT_RANGE:
 				CURRENT_STATE = State.FOLLOW
 				out_of_follow_timer = out_of_follow_cooldown
-				print("set out of follow timer")
+				
 		State.FOLLOW:
 			if out_of_follow_timer > 0.0:
 				out_of_follow_timer -= delta
@@ -62,8 +66,6 @@ func _process(delta: float) -> void:
 			if distance_to_player <= ATTACK_RANGE:
 				CURRENT_STATE = State.ATTACK
 				attack_timer = attack_duration
-				print("set attack timer")
-				
 				
 			if distance_to_player <= DETECT_RANGE:
 				out_of_follow_timer = out_of_follow_cooldown
@@ -87,7 +89,6 @@ func _draw() -> void:
 	#debug circle showing detection range
 	draw_circle(Vector2.ZERO, DETECT_RANGE, Color.BLUE, false, 2.0)
 	draw_circle(Vector2.ZERO, ATTACK_RANGE, Color.RED, false, 2.0)
-
 
 func _physics_process(delta: float) -> void:
 	match CURRENT_STATE:
@@ -119,6 +120,9 @@ func _on_hurtbox_area_entered(area: Area2D):
 		var total_damage: float = area.get_damage() + player.get_damage() 
 		take_damage(total_damage, area)
 		
+func _on_hit_particles_finished():
+	hit_particles.emitting = false
+	
 func take_damage(amount: float, area: Area2D):
 	if isInvincible:
 		return
@@ -137,6 +141,8 @@ func take_damage(amount: float, area: Area2D):
 	var knockback_force = knockback_dir * area.get_parent().get_knockback()
 	
 	apply_impulse(knockback_force)
+	hit_particles.rotation = (knockback_dir).angle()
+	hit_particles.emitting = true
 	
 	# angular knockback (had to rely on ai for this one)
 	# offset = vector from enemy center to hit point (weapon position in local space)
@@ -146,9 +152,10 @@ func take_damage(amount: float, area: Area2D):
 	apply_torque_impulse(torque_direction * area.get_parent().KNOCKBACK)
 	
 	HEALTH -= amount
+	SignalBus.enemy_hit.emit()
 	if HEALTH <= 0:
-		pass
-		#trigger_death()
+		SignalBus.enemy_died.emit()
+		trigger_death()
 		
 #helper methods
 func apply_damp():
@@ -165,12 +172,18 @@ func trigger_death():
 	queue_free()
 	
 func _equip_weapon():
-	var weapon_type = GameState.weapon_list.pick_random()
-	WEAPON = GameState.get_weapon(weapon_type, "enemy").instantiate() as Weapon
-	if WEAPON == null:
-		push_error("Weapon scene does not have a Weapon script attached or doesn't exist")
-		return
+	var weapon_scene: PackedScene
+	if WEAPON_SCENE != null:
+		weapon_scene = WEAPON_SCENE
+	else:
+		var weapon_type = GameState.weapon_list.pick_random()
+		weapon_scene = GameState.get_weapon(weapon_type, "enemy")
 	
+	WEAPON = weapon_scene.instantiate() as Weapon
+	if WEAPON == null:
+			push_error("Weapon scene does not have a Weapon script attached or doesn't exist")
+			return
+			
 	add_child(WEAPON)
 	WEAPON.position = Vector2(0.0,-10.0)
 	$Sprite2D.move_to_front()

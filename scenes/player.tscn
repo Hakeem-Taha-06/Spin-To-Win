@@ -91,8 +91,12 @@ process_material = SubResource("ParticleProcessMaterial_g2els")
 
 [node name="BrakeEffect" type="GPUParticles2D" parent="." unique_id=1718665626]
 material = SubResource("CanvasItemMaterial_oh1b7")
+emitting = false
 amount = 1
 texture = ExtResource("2_qhqgy")
+lifetime = 1.72
+one_shot = true
+explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_dqkch")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=321689412]

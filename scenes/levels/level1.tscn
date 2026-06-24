@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bo1svgk2ncek4"]
+
+[ext_resource type="Script" uid="uid://ciukh1drmxwb7" path="res://scripts/level.gd" id="1_bfxgj"]
+[ext_resource type="PackedScene" uid="uid://c3xxx5ctyg4c" path="res://scenes/player.tscn" id="1_dd0lh"]
+[ext_resource type="PackedScene" uid="uid://8ypu72xp6ivd" path="res://scenes/enemy.tscn" id="2_bfxgj"]
+[ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/arena.tscn" id="3_dywbp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bfxgj"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_dywbp"]
+font_size = 80
+
+[node name="Level" type="Node2D" unique_id=1818319842]
+script = ExtResource("1_bfxgj")
+
+[node name="player" parent="." unique_id=837808415 instance=ExtResource("1_dd0lh")]
+position = Vector2(-41, 47)
+disable_mode = 2
+
+[node name="enemy1" parent="." unique_id=641408842 instance=ExtResource("2_bfxgj")]
+position = Vector2(170, 32)
+
+[node name="Arena" parent="." unique_id=712916083 instance=ExtResource("3_dywbp")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=916303355]
+
+[node name="enemy2" parent="." unique_id=1039635145 instance=ExtResource("2_bfxgj")]
+position = Vector2(-296, -182)
+
+[node name="enemy3" parent="." unique_id=876766075 instance=ExtResource("2_bfxgj")]
+position = Vector2(-316, 190)
+
+[node name="MessageLabel" type="Label" parent="." unique_id=1889330081]
+offset_left = -119.0
+offset_top = -217.0
+offset_right = 116.0
+offset_bottom = -99.0
+label_settings = SubResource("LabelSettings_bfxgj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ComboLabel" type="Label" parent="." unique_id=1302279065]
+offset_left = -68.0
+offset_top = -154.0
+offset_right = 68.0
+offset_bottom = -44.0
+label_settings = SubResource("LabelSettings_dywbp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1255139514]
+offset_left = -560.0
+offset_top = -309.0
+offset_right = -399.0
+offset_bottom = -263.0
+horizontal_alignment = 1
+vertical_alignment = 1

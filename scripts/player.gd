@@ -33,6 +33,7 @@ func _ready() -> void:
 	add_to_group("player")
 	_equip_weapon()
 	hurtbox.area_entered.connect(_on_hurtbox_area_entered)
+	brake_effect.finished.connect(_on_brake_effect_finished)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -42,10 +43,6 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float)->void:
 	cooldowns(delta)
 
-
-#TO-DO: trying to move in a direction that is opposite to the one 
-#       the player is currently moving in produces double the force,
-#       this lets the player switch movement/rotation direction faster
 func handle_torque():
 	var input := Input.get_axis("rotate_left", "rotate_right")
 	if input != 0.0:
@@ -85,7 +82,7 @@ func handle_linear_velocity():
 			apply_force(Vector2(input.x * LINEAR_SPEED * h_multiplier, 0.0))
 		if h_dot < 0:
 			brake_offset.x = sign(linear_velocity.x) * BRAKE_OFFSET
-			is_braking = true
+			brake_effect.emitting = true
 
 	if input.y != 0.0:
 		var v_dot = sign(input.y) * sign(linear_velocity.y)
@@ -94,10 +91,9 @@ func handle_linear_velocity():
 			apply_force(Vector2(0.0, input.y * LINEAR_SPEED * v_multiplier))
 		if v_dot < 0:
 			brake_offset.y = sign(linear_velocity.x) * BRAKE_OFFSET
-			is_braking = true
+			brake_effect.emitting = true
 			
 	brake_effect.position = brake_offset
-	brake_effect.emitting = is_braking
 	brake_effect.rotation = (-input).angle()
 	
 	linear_velocity.x = clamp(linear_velocity.x, -MAX_LINEAR_SPEED, MAX_LINEAR_SPEED)
@@ -119,6 +115,9 @@ func _equip_weapon():
 func _on_hurtbox_area_entered(area: Area2D):
 	if area.has_method("get_damage"):
 		take_damage(area.get_damage(), area)
+	
+func _on_brake_effect_finished():
+	brake_effect.emitting = false
 	
 func take_damage(amount: float, area: Area2D):
 	if isInvincible:
