@@ -34,15 +34,6 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1646398635]
-layout_mode = 2
-text = "Speed"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SpeedSlider" type="HSlider" parent="VBoxContainer" unique_id=8030815]
-layout_mode = 2
-
 [node name="StartButton" type="Button" parent="VBoxContainer" unique_id=1381319338]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
@@ -50,18 +41,9 @@ text = "Start"
 
 [node name="Label" type="Label" parent="." unique_id=671235226]
 layout_mode = 0
-offset_left = 427.0
-offset_top = 88.0
-offset_right = 681.0
-offset_bottom = 225.0
-text = "TITLE"
+offset_left = 168.0
+offset_top = 85.0
+offset_right = 934.0
+offset_bottom = 222.0
+text = "SPINNY KNIGHT"
 label_settings = SubResource("LabelSettings_yqorp")
-
-[node name="SpeedValue" type="Label" parent="." unique_id=1992577304]
-layout_mode = 0
-offset_left = 675.0
-offset_top = 360.0
-offset_right = 715.0
-offset_bottom = 383.0
-text = "200"
-horizontal_alignment = 1

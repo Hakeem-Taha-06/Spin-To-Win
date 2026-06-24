@@ -10,12 +10,12 @@
 position = Vector2(-41, 47)
 disable_mode = 2
 
-[node name="enemy1" parent="." unique_id=641408842 instance=ExtResource("2_yqjtg")]
-position = Vector2(170, 32)
-
 [node name="Arena" parent="." unique_id=712916083 instance=ExtResource("3_lnu2h")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=916303355]
+
+[node name="enemy1" parent="." unique_id=641408842 instance=ExtResource("2_yqjtg")]
+position = Vector2(170, 32)
 
 [node name="enemy2" parent="." unique_id=1039635145 instance=ExtResource("2_yqjtg")]
 position = Vector2(-296, -182)
