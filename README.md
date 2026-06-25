@@ -18,10 +18,10 @@ you control a knight that really likes to spin for some reason, you kill enemies
 
 | Action | Primary Key | Alternate Key |
 |---|---|---|
-| Move Up | `W` | `↑` Arrow |
-| Move Down | `S` | `↓` Arrow |
-| Move Left | `A` | `←` Arrow |
-| Move Right | `D` | `→` Arrow |
+| Move Up | `W` | `↑`  |
+| Move Down | `S` | `↓` |
+| Move Left | `A` | `←`  |
+| Move Right | `D` | `→`  |
 | Rotate Left (Counter-Clockwise) | `Q` | `Z` |
 | Rotate Right (Clockwise) | `E` | `X` |
 
@@ -52,8 +52,8 @@ Enemies operate on a **three-state AI**:
 | State | Behaviour |
 |---|---|
 | **IDLE** | Stands still, applies velocity damping. Transitions to FOLLOW when the player enters detection range (`400 px` by default). |
-| **FOLLOW** | Faces the player and applies movement force toward them at `100` force / `200 max speed`. Transitions to ATTACK when within attack range (`100 px`). Returns to IDLE if the player stays out of detection range for `2 seconds`. |
-| **ATTACK** | Charges the player with `3×` movement force and a higher speed cap (`400`). Lasts for `2 seconds`, then returns to IDLE. |
+| **FOLLOW** | Faces the player and applies movement force toward them. Transitions to ATTACK when within attack range (`100 px`). Returns to IDLE if the player stays out of detection range for `2 seconds`. |
+| **ATTACK** | Charges the player with `3×` movement force and a higher speed cap. Lasts for `2 seconds`, then returns to IDLE. |
 
 ### Enemy Stats (Defaults)
 
@@ -71,35 +71,22 @@ Enemies either use a weapon explicitly assigned via the `WEAPON_SCENE` export, o
 
 ---
 
-## 💥 Combat & Damage
+## Combat & Damage
 
-### How Damage Works
-
-- **Weapon hitboxes** (`Area2D` with the `HitBox` script) overlap with **hurtboxes** to trigger damage.
-- When the **player** hits an enemy, the total damage dealt is **weapon damage + player body damage** (the player's `get_damage()` returns `10` base).
-- When an **enemy** hits the player, damage equals the enemy weapon's damage value.
+- Damage dealt by player to enemy = player base damage + weapon damage
+- Damage dealt by enemy to player = weapon base damage
+- if the enemy bumps into the player, the player takes a little bit of damage
 
 ### Knockback
 
 On every hit:
-1. A **linear impulse** pushes the victim away from the point of impact.
-2. An **angular (torque) impulse** spins the victim — the direction depends on which side the hit landed (calculated via a 2D cross product).
+1. A **linear impulse** pushes the enemies away from the point of impact.
+2. An **angular (torque) impulse** spins the enemy.
 3. The knockback magnitude comes from the attacker's weapon `KNOCKBACK` stat.
-
-### Hit Effects
-
-- **Slow-motion**: On every hit, `Engine.time_scale` drops to `0.2` for `0.2` real-time seconds, creating a satisfying impact freeze.
-- **Invincibility frames**: After being hit, both players and enemies become invincible for a short duration (player: `1.0s`, enemy: `0.25s`).
-- **Hit particles**: Enemies emit a burst of yellow particles in the knockback direction when struck.
-
-### Death
-
-- **Enemy**: When health reaches `0`, the `enemy_died` signal fires (updating the score) and the enemy is removed from the scene via `queue_free()`.
-- **Player**: ⚠️ **Player death is currently unfinished.**
 
 ---
 
-## 🏆 Scoring System
+## Scoring System
 
 The game features a **combo-based scoring system** managed by the level script:
 
@@ -115,16 +102,11 @@ The game features a **combo-based scoring system** managed by the level script:
 
 ---
 
-## 🔄 Game Loop & Level Flow
-
-```
-Main Menu  →  Level 1  →  Between Levels (Upgrade)  →  Level 2  →  repeat until last level -> Boss Level -> end screen
-```
+## Game Loop & Level Flow
 
 ### 1. Main Menu
 
 - Choose your **weapon** (Sword, Axe, or Spear) from a dropdown.
-- Set your **movement speed** with a slider (range: `100` – `400`, default: `200`).
 - Settings are **saved** to a config file (`user://settings.cfg`) and restored on next launch.
 - Press **Start** to begin.
 
@@ -141,23 +123,18 @@ After completing a level, you're presented with **three upgrade choices** (pick 
 
 | Upgrade | Effect |
 |---|---|
-| ❤️ Health | `+50` to max health |
-| ⚔️ Damage | `+5` to player base damage |
-| 💨 Speed | `+100` to movement speed |
+| Health | `+100` to max health |
+| Damage | `+20` to player base damage |
+| Speed | `+100` to movement speed |
 
 Your current total score is displayed. After choosing, settings are saved and the next level loads.
-
-> ⚠️ **Note:** There is a mismatch between the upgrade button labels in the scene (`+100 HEALTH`, `+1 SPEED`) and the actual script values (`+50 health`, `+100 speed`). The display text doesn't match the code.
+- note that even tho the ui says it increases 1 speed, in the code it actually increases by a 100, which is intended since the amount of pushing force is meant to be something "internal" not representative of the "speed" value
 
 ### 4. End of Game
 
-- Currently there are **2 levels** defined (`level1.tscn`, `level2.tscn`).
-- ⚠️ **After the final level, the game loops back to the Main Menu** as a temporary measure. might add a boss level and end screen later.
-- The `current_level` index resets to `0` when all levels are exhausted.
+after the game ends you get to type your name and it gets saved to a leaderboard which you can see after hitting submit.
 
----
-
-## 🏗️ Architecture
+## Architecture
 
 ### Autoloads (Singletons)
 
@@ -168,17 +145,20 @@ Your current total score is displayed. After choosing, settings are saved and th
 
 ### Key Scripts
 
-| Script | Role |
-|---|---|
-| `player.gd` | Player movement, rotation, weapon equipping, damage/knockback handling, invincibility, death. |
-| `enemy.gd` | Enemy AI state machine, player tracking, weapon equipping, damage/knockback handling, death. |
-| `level.gd` | Level countdown, win detection, combo system, score tracking, level-end transition. |
-| `main_menu.gd` | Weapon/speed selection UI, settings persistence, game start. |
-| `between_levels.gd` | Upgrade selection UI, stat application, level progression. |
-| `weapon.gd` | Base weapon class with damage/knockback values and getters. |
-| `sword.gd` / `axe.gd` / `spear.gd` | Weapon subclasses that override damage/knockback in `_ready()`. |
-| `hit_box.gd` | Attached to weapon `Area2D`; provides `get_damage()` by reading from parent. |
-| `signal_bus.gd` | Declares global signals for enemy hit/death events. |
+| Script | Location | Role |
+|---|---|---|
+| `game_state.gd` | `scripts/` | Autoloaded singleton — player stats, weapon registry, level list, score tracking, leaderboard persistence (top 10), settings save/load, and all scene transitions. |
+| `player.gd` | `scripts/entities/` | Player movement, rotation, weapon equipping, health bar, damage/knockback handling, invincibility, death. |
+| `enemy.gd` | `scripts/entities/` | Enemy AI state machine (IDLE/FOLLOW/ATTACK), player tracking, weapon equipping, health bar, damage/knockback handling, death. |
+| `hit_box.gd` | `scripts/entities/` | Attached to weapon `Area2D`; provides `get_damage()` by reading from parent entity. |
+| `level.gd` | `scripts/core/` | Level countdown, win detection, combo system, score tracking, level-end transition. |
+| `main_menu.gd` | `scripts/core/` | Weapon selection UI, settings persistence, game start. |
+| `between_levels.gd` | `scripts/core/` | Upgrade selection UI (health/damage/speed), stat application, level progression. |
+| `end_menu.gd` | `scripts/core/` | Post-game score display and name entry; submits the player's score to the leaderboard. |
+| `scores_menu.gd` | `scripts/core/` | Leaderboard screen — loads and displays the top 10 saved scores with rank, name, and score. |
+| `signal_bus.gd` | `scripts/core/` | Autoloaded global event bus with `enemy_hit` and `enemy_died` signals. |
+| `weapon.gd` | `scripts/weapons/` | Base weapon class with damage/knockback values and getters. |
+| `sword.gd` / `axe.gd` / `spear.gd` | `scripts/weapons/` | Weapon subclasses that override damage/knockback in `_ready()`. |
 
 ### Collision Layers
 
@@ -186,7 +166,7 @@ The game uses bitmask-based collision layers to separate player, enemy, weapon, 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Engine**: Godot 4.7
 - **Language**: GDScript
