@@ -1,0 +1,10 @@
+<svg xmlns="http://w3.org" width="300" height="300" viewBox="0 0 300 300">
+  <style>
+    .pixelated-sprite {
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+    }
+  </style>
+  <!-- href points directly to the PNG in the same folder -->
+  <image href="spinny_knight.png" width="300" height="300" class="pixelated-sprite" />
+</svg>

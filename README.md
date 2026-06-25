@@ -1,18 +1,20 @@
-# ⚔️ Spinny Knight
+<p align="center">
+  <img src="assets/sprites/player/spinny_knight.svg" alt="Spinny Knight Sprite" width="300">
+</p>
+
+# ![knight](assets/sprites/player/spinny_knight.png) Spinny Knight
 
 > A physics-based top-down arena brawler made for **JuniperDev's VERY SERIOUS Game Jam**, themed **"Spin To Win"**.
 
 Built with **Godot 4.7** (GL Compatibility renderer, Jolt Physics).
 
----
+## Overview
 
-## 📖 Overview
-
-You are the **Spinny Knight** — a spinning, physics-driven warrior dropped into an arena full of enemies. Move, spin, and let your weapon do the talking. Your character is a `RigidBody2D` that slides and rotates through the arena; the weapon attached to you damages anything it touches as you whirl past. The core fantasy: **spin to win**.
+you control a knight that really likes to spin for some reason, you kill enemies by bumping your weapon of choice into their bodies. the game is sort of like a dungeon crawler in that you choose an upgrade after each level that persists for the rest of the game
 
 ---
 
-## 🎮 Controls
+## Controls
 
 | Action | Primary Key | Alternate Key |
 |---|---|---|
@@ -25,35 +27,25 @@ You are the **Spinny Knight** — a spinning, physics-driven warrior dropped int
 
 ### Movement Details
 
-- **Movement** applies a physics force to the player, meaning you accelerate and slide rather than moving at a fixed speed. There is a configurable maximum linear speed that clamps your velocity.
-- **Braking** happens automatically when you push in the direction opposite to your current velocity — a `2×` force multiplier kicks in, and a brake particle effect plays.
-- **Damping** is applied when no movement input is held; the player gradually slows to a stop (velocity is multiplied by `0.95` each physics frame, zeroing out below `0.5`).
-- **Rotation** uses torque-based physics. You spin up gradually and a similar braking multiplier applies when counter-rotating. Maximum angular velocity is capped at `30 rad/s`.
-- **Particle effects** — a smoke trail emits in the opposite direction of movement, and a one-shot brake puff plays when counter-steering.
+- The movement relies mainly on godot's built in physics engine, where instead of setting the velocity manually each frame, all movement is dependant on applying forces or impulses and letting the engine do the rest.
+
+- Both movement and rotation have a braking effect when you try to move in the opposite direction than the one you are currently moving in, which applies a 2x force factor for faster deccelaration to provide more control.
 
 ---
 
-## 🗡️ Weapons
-
-There are **three weapons** in the game. Each extends a base `Weapon` class with its own **damage** and **knockback** values:
+## Weapons
 
 | Weapon | Damage | Knockback |
 |---|---|---|
-| 🗡️ **Sword** | 20 | 200 |
-| 🪓 **Axe** | 40 | 300 |
-| 🔱 **Spear** | 10 | 100 |
-
-- The **Sword** is the balanced default — moderate damage and knockback.
-- The **Axe** hits the hardest and sends enemies flying, but has a wide hitbox.
-- The **Spear** deals the least damage and knockback, but has a long, narrow reach.
-
-Weapons are attached to the player (and enemies) as child `RigidBody2D` nodes frozen in place. Each weapon has an `Area2D` hitbox that detects overlaps with hurtboxes to deal damage.
+| ![sword](assets/sprites/player/spinny_sword.png) **Sword**| 20 | 200 |
+| ![axe](assets/sprites/player/spinny_axe.png) **Axe**| 40 | 300 |
+| ![spear](assets/sprites/player/spinny_spear.png) **Spear**| 10 | 100 |
 
 ---
 
-## 👾 Enemies
+## ![enemy](assets/sprites/Top2.png) Enemies
 
-Enemies are also `RigidBody2D` entities with their own weapon attached. They operate on a **three-state AI**:
+Enemies operate on a **three-state AI**:
 
 ### State Machine
 
