@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/sprites/player/spinny_knight.svg" alt="Spinny Knight Sprite" width="300">
+  <img src="assets/sprites/player/icon.svg" alt="Spinny Knight Sprite" width="300">
 </p>
 
 # ![knight](assets/sprites/player/spinny_knight.png) Spinny Knight
