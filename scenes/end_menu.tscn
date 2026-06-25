@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b1cj7xpna2roh"]
+
+[ext_resource type="Script" uid="uid://b7a5yo5pgbil0" path="res://scripts/core/end_menu.gd" id="1_c01dn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_felse"]
+font_size = 40
+
+[node name="EndMenu" type="Control" unique_id=1906031646]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c01dn")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1356233811]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 183.0
+offset_right = 748.0
+offset_bottom = 238.0
+label_settings = SubResource("LabelSettings_felse")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreEnterLabel" type="Label" parent="." unique_id=1438695452]
+layout_mode = 0
+offset_left = 410.0
+offset_top = 267.0
+offset_right = 725.0
+offset_bottom = 329.0
+theme_override_font_sizes/font_size = 30
+text = "Enter your name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextEdit" type="LineEdit" parent="." unique_id=210329583]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 0
+offset_left = 409.0
+offset_top = 333.0
+offset_right = 727.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 30
+alignment = 1
+max_length = 16
+expand_to_text_length = true
+emoji_menu_enabled = false
+caret_blink = true
+
+[node name="SubmitButton" type="Button" parent="." unique_id=917047245]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 0
+offset_left = 409.0
+offset_top = 449.0
+offset_right = 727.0
+offset_bottom = 551.0
+theme_override_font_sizes/font_size = 40
+text = "Submit"

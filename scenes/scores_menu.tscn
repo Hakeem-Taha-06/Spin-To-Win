@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c1qllnflu2exd"]
+
+[ext_resource type="Script" uid="uid://dltpnb1rd4vrp" path="res://scripts/core/scores_menu.gd" id="1_pntp8"]
+
+[node name="ScoresMenu" type="Control" unique_id=1828547518]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pntp8")
+
+[node name="Leaderboard" type="VBoxContainer" parent="." unique_id=1066873580]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 41.0
+offset_right = 869.0
+offset_bottom = 528.0
+
+[node name="ReturnButton" type="Button" parent="." unique_id=893221962]
+layout_mode = 0
+offset_left = 269.0
+offset_top = 542.0
+offset_right = 822.0
+offset_bottom = 596.0
+theme_override_font_sizes/font_size = 24
+text = "Return to main menu"

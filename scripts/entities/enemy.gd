@@ -88,12 +88,13 @@ func _process(delta: float) -> void:
 	cooldowns(delta)
 
 func _draw() -> void:
-	#debug line showing facing direction
-	var local_facing = facing_direction.rotated(-rotation)
-	draw_line(Vector2.ZERO, local_facing * debug_line_length, Color.RED, 2.0)
-	#debug circle showing detection range
-	draw_circle(Vector2.ZERO, DETECT_RANGE, Color.BLUE, false, 2.0)
-	draw_circle(Vector2.ZERO, ATTACK_RANGE, Color.RED, false, 2.0)
+	##debug line showing facing direction
+	#var local_facing = facing_direction.rotated(-rotation)
+	#draw_line(Vector2.ZERO, local_facing * debug_line_length, Color.RED, 2.0)
+	##debug circle showing detection range
+	#draw_circle(Vector2.ZERO, DETECT_RANGE, Color.BLUE, false, 2.0)
+	#draw_circle(Vector2.ZERO, ATTACK_RANGE, Color.RED, false, 2.0)
+	pass
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:

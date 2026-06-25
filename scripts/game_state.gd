@@ -31,21 +31,35 @@ var weapon_list = weapons.keys()
 var levels = [
 	"res://scenes/levels/level1.tscn",
 	"res://scenes/levels/level2.tscn",
+	"res://scenes/levels/level3.tscn",
+	"res://scenes/levels/level4.tscn",
 ]
 
 var total_score := 0.0
+var scores := []
+const MAX_LEADERBOARD_SIZE := 10
+#scores = [
+#	{"name": "name1", "score": 1000},
+#	{"name": "name2", "score": 500},
+#]
+
 
 func _ready() -> void:
 	load_settings()
 	
 func start_game():
+	player_speed = 200.0
+	player_health = 100.0
+	player_damage = 10.0
+	total_score = 0
+	save_settings()
 	get_tree().change_scene_to_file(levels[0])
 	
 func end_level():
 	current_level += 1
 	if current_level >= levels.size():
 		current_level = 0 #temporary, there should be a game_end function that resets everything
-		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+		get_tree().change_scene_to_file("res://scenes/end_menu.tscn")
 		#switch to end screen or boss level
 	else:
 		get_tree().change_scene_to_file("res://scenes/levels/between_levels.tscn")
@@ -53,11 +67,18 @@ func end_level():
 func next_level():
 	get_tree().change_scene_to_file(levels[current_level])
 
+func to_leaderboard():
+	get_tree().change_scene_to_file("res://scenes/scores_menu.tscn")
+	
+func to_main_menu():
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+
 func get_weapon(weapon_type: String,owner_type: String) -> PackedScene:
 	return weapons[weapon_type][owner_type]
 	
 func save_settings():
 	var config = ConfigFile.new()
+	config.load(SETTINGS_PATH)
 	config.set_value("player", "health", player_health)
 	config.set_value("player", "damage", player_damage)
 	config.set_value("player", "speed", player_speed)
@@ -73,3 +94,27 @@ func load_settings():
 	player_damage = config.get_value("player", "damage", player_damage)
 	player_speed  = config.get_value("player", "speed", player_speed)
 	player_weapon = config.get_value("player", "weapon", player_weapon)
+
+func load_scores() -> Array:
+	var config = ConfigFile.new()
+	if config.load(SETTINGS_PATH) != OK:
+		return []
+	return config.get_value("leaderboard", "entries", [])
+	
+func save_scores(leaderboard: Array):
+	var config = ConfigFile.new()
+	config.load(SETTINGS_PATH)
+	scores = leaderboard
+	config.set_value("leaderboard", "entries", leaderboard)
+	config.save(SETTINGS_PATH)
+	
+@warning_ignore("shadowed_variable_base_class") #im not using it anyways
+func add_score(name: String, score: int):
+	var leaderboard = load_scores()
+	leaderboard.append({"name": name, "score": score})
+	
+	leaderboard.sort_custom(func(a,b): return a["score"]>b["score"])
+	if leaderboard.size() > MAX_LEADERBOARD_SIZE:
+		leaderboard.resize(MAX_LEADERBOARD_SIZE)
+	save_scores(leaderboard)
+	

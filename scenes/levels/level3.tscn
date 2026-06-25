@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://bo1svgk2ncek4"]
+[gd_scene format=3 uid="uid://dp450h544cfuq"]
 
-[ext_resource type="Script" uid="uid://ciukh1drmxwb7" path="res://scripts/core/level.gd" id="1_bfxgj"]
-[ext_resource type="PackedScene" uid="uid://c3xxx5ctyg4c" path="res://scenes/player.tscn" id="1_dd0lh"]
-[ext_resource type="PackedScene" uid="uid://8ypu72xp6ivd" path="res://scenes/enemy.tscn" id="2_bfxgj"]
-[ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/arena.tscn" id="3_dywbp"]
+[ext_resource type="Script" uid="uid://ciukh1drmxwb7" path="res://scripts/core/level.gd" id="1_t275y"]
+[ext_resource type="PackedScene" uid="uid://c3xxx5ctyg4c" path="res://scenes/player.tscn" id="2_f5jb5"]
+[ext_resource type="PackedScene" uid="uid://8ypu72xp6ivd" path="res://scenes/enemy.tscn" id="3_frjko"]
+[ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/arena.tscn" id="4_f7rt6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bfxgj"]
 font_size = 40
@@ -12,21 +12,24 @@ font_size = 40
 font_size = 80
 
 [node name="Level" type="Node2D" unique_id=1818319842]
-script = ExtResource("1_bfxgj")
+script = ExtResource("1_t275y")
 
-[node name="player" parent="." unique_id=837808415 instance=ExtResource("1_dd0lh")]
+[node name="player" parent="." unique_id=837808415 instance=ExtResource("2_f5jb5")]
 position = Vector2(-41, 47)
 disable_mode = 2
 
-[node name="enemy1" parent="." unique_id=641408842 instance=ExtResource("2_bfxgj")]
-position = Vector2(-221, -242)
+[node name="enemy1" parent="." unique_id=641408842 instance=ExtResource("3_frjko")]
+position = Vector2(170, 32)
 
-[node name="Arena" parent="." unique_id=712916083 instance=ExtResource("3_dywbp")]
+[node name="Arena" parent="." unique_id=712916083 instance=ExtResource("4_f7rt6")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=916303355]
 
-[node name="enemy3" parent="." unique_id=876766075 instance=ExtResource("2_bfxgj")]
-position = Vector2(-384, -197)
+[node name="enemy2" parent="." unique_id=1039635145 instance=ExtResource("3_frjko")]
+position = Vector2(-296, -182)
+
+[node name="enemy3" parent="." unique_id=876766075 instance=ExtResource("3_frjko")]
+position = Vector2(-316, 190)
 
 [node name="MessageLabel" type="Label" parent="." unique_id=1889330081]
 offset_left = -119.0
