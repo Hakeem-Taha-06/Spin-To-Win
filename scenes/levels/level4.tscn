@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bc4icodgua3uh"]
 
 [ext_resource type="Script" uid="uid://ciukh1drmxwb7" path="res://scripts/core/level.gd" id="1_o34q2"]
+[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/background.tscn" id="2_e127x"]
 [ext_resource type="PackedScene" uid="uid://c3xxx5ctyg4c" path="res://scenes/player.tscn" id="2_rdsj4"]
 [ext_resource type="PackedScene" uid="uid://8ypu72xp6ivd" path="res://scenes/enemy.tscn" id="3_e127x"]
 [ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/arena.tscn" id="4_heu5o"]
@@ -17,22 +18,25 @@ font_size = 32
 [node name="Level" type="Node2D" unique_id=1818319842]
 script = ExtResource("1_o34q2")
 
+[node name="Background" parent="." unique_id=1301492950 instance=ExtResource("2_e127x")]
+position = Vector2(-575, -325)
+
 [node name="player" parent="." unique_id=837808415 instance=ExtResource("2_rdsj4")]
 position = Vector2(-41, 47)
 disable_mode = 2
 
 [node name="enemy1" parent="." unique_id=641408842 instance=ExtResource("3_e127x")]
-position = Vector2(170, 32)
+position = Vector2(331, 191)
 
 [node name="Arena" parent="." unique_id=712916083 instance=ExtResource("4_heu5o")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=916303355]
 
 [node name="enemy2" parent="." unique_id=1039635145 instance=ExtResource("3_e127x")]
-position = Vector2(-296, -182)
+position = Vector2(-406, -129)
 
 [node name="enemy3" parent="." unique_id=876766075 instance=ExtResource("3_e127x")]
-position = Vector2(-316, 190)
+position = Vector2(-411, 202)
 
 [node name="MessageLabel" type="Label" parent="." unique_id=1889330081]
 offset_left = -119.0
@@ -60,3 +64,12 @@ offset_bottom = -263.0
 label_settings = SubResource("LabelSettings_w8iej")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="enemy4" parent="." unique_id=854574208 instance=ExtResource("3_e127x")]
+position = Vector2(329, 35)
+
+[node name="enemy5" parent="." unique_id=1807847757 instance=ExtResource("3_e127x")]
+position = Vector2(-409, 39)
+
+[node name="enemy6" parent="." unique_id=1066623146 instance=ExtResource("3_e127x")]
+position = Vector2(328, -113)

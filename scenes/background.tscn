@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b1c5e7rt160yd"]
+
+[ext_resource type="Texture2D" uid="uid://otxlvj6ql0p" path="res://assets/sprites/starry_knight.png" id="1_bkp1e"]
+
+[node name="Background" type="Node2D" unique_id=1301492950]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=980457627]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.9591711, 1.0751314)
+texture = ExtResource("1_bkp1e")

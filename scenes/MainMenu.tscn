@@ -116,12 +116,14 @@ text = "Back to main menu"
 [node name="InstructionsLabel" type="Label" parent="." unique_id=1575350417]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 0
-offset_left = 425.0
-offset_top = 392.0
-offset_right = 675.0
-offset_bottom = 452.0
+offset_left = 31.0
+offset_top = 393.0
+offset_right = 1261.0
+offset_bottom = 530.0
 theme_override_font_sizes/font_size = 32
-text = "Move with the arrow keys or WASD
+text = "- Move with the arrow keys or WASD              - Hit enemies with the metal bit of your weapon
 
-Spin with Q & E or Z & X
+- Spin with Q & E or Z & X                              - Each hit increases your combo mutliplier 
+                                                                     which multiplies the score you get when
+                                                                     killing an enemy
 "

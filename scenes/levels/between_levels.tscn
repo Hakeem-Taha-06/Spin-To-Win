@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b5k3yuagvo4y2"]
 
 [ext_resource type="Script" uid="uid://qiysu13fcf4a" path="res://scripts/core/between_levels.gd" id="1_y6mtv"]
+[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/background.tscn" id="2_htb6i"]
 [ext_resource type="StyleBox" uid="uid://c7m40oknfr3pt" path="res://style_box_flat.res" id="2_w8iej"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htb6i"]
@@ -39,6 +40,9 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y6mtv")
+
+[node name="Background" parent="." unique_id=1301492950 instance=ExtResource("2_htb6i")]
+position = Vector2(-270, 1)
 
 [node name="HealthButton" type="Button" parent="." unique_id=1764910608]
 custom_minimum_size = Vector2(260, 400)
@@ -109,5 +113,6 @@ offset_left = -266.0
 offset_top = 22.0
 offset_right = -105.0
 offset_bottom = 68.0
+theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1

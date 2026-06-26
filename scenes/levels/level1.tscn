@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c3xxx5ctyg4c" path="res://scenes/player.tscn" id="1_dd0lh"]
 [ext_resource type="PackedScene" uid="uid://8ypu72xp6ivd" path="res://scenes/enemy.tscn" id="2_bfxgj"]
 [ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/arena.tscn" id="3_dywbp"]
+[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/background.tscn" id="5_dywbp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bfxgj"]
 font_size = 40
@@ -17,19 +18,19 @@ font_size = 32
 [node name="Level" type="Node2D" unique_id=1818319842]
 script = ExtResource("1_bfxgj")
 
+[node name="Background" parent="." unique_id=1101698056 instance=ExtResource("5_dywbp")]
+position = Vector2(-575, -325)
+
 [node name="player" parent="." unique_id=837808415 instance=ExtResource("1_dd0lh")]
-position = Vector2(-41, 47)
+position = Vector2(304, 34)
 disable_mode = 2
 
 [node name="enemy1" parent="." unique_id=641408842 instance=ExtResource("2_bfxgj")]
-position = Vector2(-221, -242)
+position = Vector2(-321, 34)
 
 [node name="Arena" parent="." unique_id=712916083 instance=ExtResource("3_dywbp")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=916303355]
-
-[node name="enemy3" parent="." unique_id=876766075 instance=ExtResource("2_bfxgj")]
-position = Vector2(-384, -197)
 
 [node name="MessageLabel" type="Label" parent="." unique_id=1889330081]
 offset_left = -119.0
