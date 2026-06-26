@@ -15,6 +15,9 @@ font_size = 80
 [sub_resource type="LabelSettings" id="LabelSettings_w8iej"]
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_2r1tl"]
+font_size = 44
+
 [node name="Level" type="Node2D" unique_id=1818319842]
 script = ExtResource("1_bfxgj")
 
@@ -58,3 +61,14 @@ offset_bottom = -263.0
 label_settings = SubResource("LabelSettings_w8iej")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DialogBox" type="PanelContainer" parent="." unique_id=64785946]
+offset_left = -521.0
+offset_top = 139.0
+offset_right = 522.0
+offset_bottom = 280.0
+
+[node name="DialogText" type="Label" parent="DialogBox" unique_id=660870575]
+layout_mode = 2
+text = "    Enemy Knight: All this spinning must end tonight"
+label_settings = SubResource("LabelSettings_2r1tl")

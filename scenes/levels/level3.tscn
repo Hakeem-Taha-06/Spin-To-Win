@@ -15,6 +15,9 @@ font_size = 80
 [sub_resource type="LabelSettings" id="LabelSettings_w8iej"]
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_f5jb5"]
+font_size = 44
+
 [node name="Level" type="Node2D" unique_id=1818319842]
 script = ExtResource("1_t275y")
 
@@ -67,3 +70,14 @@ position = Vector2(-335, -66)
 
 [node name="enemy5" parent="." unique_id=73862204 instance=ExtResource("3_frjko")]
 position = Vector2(302, -73)
+
+[node name="DialogBox" type="PanelContainer" parent="." unique_id=862179952]
+offset_left = -521.0
+offset_top = 139.0
+offset_right = 522.0
+offset_bottom = 280.0
+
+[node name="DialogText" type="Label" parent="DialogBox" unique_id=1098062151]
+layout_mode = 2
+text = "    Enemy Knight: The prince will rage and show his might"
+label_settings = SubResource("LabelSettings_f5jb5")

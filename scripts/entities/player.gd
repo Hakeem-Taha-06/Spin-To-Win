@@ -90,6 +90,8 @@ func handle_linear_velocity():
 		if h_dot < 0:
 			brake_offset.x = sign(linear_velocity.x) * BRAKE_OFFSET
 			brake_effect.emitting = true
+		else:
+			brake_effect.emitting = false
 
 	if input.y != 0.0:
 		var v_dot = sign(input.y) * sign(linear_velocity.y)
@@ -99,6 +101,8 @@ func handle_linear_velocity():
 		if v_dot < 0:
 			brake_offset.y = sign(linear_velocity.x) * BRAKE_OFFSET
 			brake_effect.emitting = true
+		else:
+			brake_effect.emitting = false
 			
 	brake_effect.position = brake_offset
 	brake_effect.rotation = (-input).angle()
@@ -157,6 +161,7 @@ func take_damage(amount: float, area: Area2D):
 		trigger_death()
 	
 func trigger_death():
+	get_parent().add_score()
 	GameState.game_over()
 
 func cooldowns(delta: float):

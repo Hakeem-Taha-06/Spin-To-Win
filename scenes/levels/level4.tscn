@@ -15,6 +15,9 @@ font_size = 80
 [sub_resource type="LabelSettings" id="LabelSettings_w8iej"]
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_rdsj4"]
+font_size = 44
+
 [node name="Level" type="Node2D" unique_id=1818319842]
 script = ExtResource("1_o34q2")
 
@@ -73,3 +76,14 @@ position = Vector2(-409, 39)
 
 [node name="enemy6" parent="." unique_id=1066623146 instance=ExtResource("3_e127x")]
 position = Vector2(328, -113)
+
+[node name="DialogBox" type="PanelContainer" parent="." unique_id=944267645]
+offset_left = -521.0
+offset_top = 139.0
+offset_right = 522.0
+offset_bottom = 280.0
+
+[node name="DialogText" type="Label" parent="DialogBox" unique_id=1814116699]
+layout_mode = 2
+text = "    Enemy Knight: unless this dancing ends, knight!"
+label_settings = SubResource("LabelSettings_rdsj4")

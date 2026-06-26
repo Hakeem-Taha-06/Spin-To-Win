@@ -3,6 +3,7 @@ extends Node2D
 @onready var message_label: Label = $MessageLabel
 @onready var combo_label: Label = $ComboLabel
 @onready var score_label: Label = $ScoreLabel
+@onready var dialog_box: PanelContainer = $DialogBox
 
 var label_visible_cooldown := 2.0
 var label_visible_timer := 0.0
@@ -18,9 +19,13 @@ var combo_cooldown := 3.0
 var in_combo_time := false
 var combo_label_start_scale = Vector2.ONE
 
+var paused := false
+
 func _ready() -> void:
 	SignalBus.enemy_hit.connect(_on_enemy_hit)
 	SignalBus.enemy_died.connect(_on_enemy_died)
+	
+	dialog_box.visible = true
 	
 	await level_start_cooldown()
 
@@ -33,6 +38,7 @@ func level_start_cooldown():
 		await get_tree().create_timer(1.0, true, false, true).timeout
 	
 	MusicManager.play_game_music()
+	dialog_box.visible = false
 	message_label.text = "GO!"
 	label_visible_timer = label_visible_cooldown
 	Engine.time_scale = 1.0
@@ -52,6 +58,17 @@ func _process(delta: float) -> void:
 	score_label.text = "Total Score: " + str(int(GameState.total_score)) +" Level Score: "+ str(int(accumulative_score))
 	
 	cooldowns(delta)
+	
+	if not paused and Input.is_action_just_pressed("ui_cancel"):
+		Engine.time_scale = 0.0
+		paused = true
+	elif paused and Input.is_action_just_pressed("ui_cancel"):
+		Engine.time_scale = 1.0
+		paused = false
+
+#made so that when the player dies they can call it to add the score immediately
+func add_score():
+	GameState.total_score += accumulative_score
 
 func _on_enemy_hit():
 	combo_multiplier += 1.0
