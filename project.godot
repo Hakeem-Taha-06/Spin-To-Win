@@ -17,6 +17,7 @@ config/icon="uid://do4yaktxwnddk"
 
 [autoload]
 
+MusicManager="*uid://dor7a3nyr4y6v"
 GameState="*uid://pchsq0sra4e5"
 SignalBus="*uid://rq84f882tmog"
 
@@ -29,6 +30,10 @@ window/stretch/aspect="expand"
 
 player="global player reference"
 enemy="any enemy"
+
+[gui]
+
+theme/custom_font="uid://cth4hol0yl0vr"
 
 [input]
 

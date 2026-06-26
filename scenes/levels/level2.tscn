@@ -11,6 +11,9 @@ font_size = 40
 [sub_resource type="LabelSettings" id="LabelSettings_dywbp"]
 font_size = 80
 
+[sub_resource type="LabelSettings" id="LabelSettings_w8iej"]
+font_size = 32
+
 [node name="Level" type="Node2D" unique_id=1818319842]
 script = ExtResource("1_niitk")
 
@@ -54,5 +57,6 @@ offset_left = -560.0
 offset_top = -309.0
 offset_right = -399.0
 offset_bottom = -263.0
+label_settings = SubResource("LabelSettings_w8iej")
 horizontal_alignment = 1
 vertical_alignment = 1

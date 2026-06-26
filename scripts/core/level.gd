@@ -32,6 +32,7 @@ func level_start_cooldown():
 		message_label.text = str(i)
 		await get_tree().create_timer(1.0, true, false, true).timeout
 	
+	MusicManager.play_game_music()
 	message_label.text = "GO!"
 	label_visible_timer = label_visible_cooldown
 	Engine.time_scale = 1.0

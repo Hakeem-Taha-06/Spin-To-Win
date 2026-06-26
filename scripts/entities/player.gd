@@ -75,7 +75,6 @@ func handle_linear_velocity():
 	)
 	
 	var brake_offset := Vector2.ZERO
-	var is_braking := false
 	
 	if input != Vector2.ZERO:
 		move_effects.emitting = true
@@ -155,12 +154,10 @@ func take_damage(amount: float, area: Area2D):
 	
 	HEALTH -= amount
 	if HEALTH <= 0:
-		pass
-		#trigger_death()
+		trigger_death()
 	
 func trigger_death():
-	#wait a little bit, disable collision, play some effects etc...
-	queue_free()	
+	GameState.game_over()
 
 func cooldowns(delta: float):
 	if isInvincible and invincibility_timer > 0:

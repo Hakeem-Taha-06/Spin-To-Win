@@ -3,6 +3,7 @@ extends Control
 @onready var leaderboard_container: VBoxContainer = $Leaderboard
 @onready var return_button: Button = $ReturnButton
 
+const FONT_SIZE = 40
 
 func _ready() -> void:
 	fill_leaderboard()
@@ -38,16 +39,16 @@ func create_entry(rank: String, player_name: String, score: String) -> HBoxConta
 	var score_label = Label.new()
 	var rank_label = Label.new()
 	
-	rank_label.text = rank
+	rank_label.text = rank + "- "
 	name_label.text = player_name
 	score_label.text = score
 	
 	rank_label.custom_minimum_size = Vector2(30, 0)
 	name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	
-	rank_label.add_theme_font_size_override("font_size", 30)
-	name_label.add_theme_font_size_override("font_size", 30)
-	score_label.add_theme_font_size_override("font_size", 30)
+	rank_label.add_theme_font_size_override("font_size", FONT_SIZE)
+	name_label.add_theme_font_size_override("font_size", FONT_SIZE)
+	score_label.add_theme_font_size_override("font_size", FONT_SIZE)
 	
 	entry.add_child(rank_label)
 	entry.add_child(name_label)

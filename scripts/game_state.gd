@@ -45,6 +45,7 @@ const MAX_LEADERBOARD_SIZE := 10
 
 
 func _ready() -> void:
+	MusicManager.play_menu_music()
 	load_settings()
 	
 func start_game():
@@ -52,26 +53,44 @@ func start_game():
 	player_health = 100.0
 	player_damage = 10.0
 	total_score = 0
+	current_level = 0
 	save_settings()
+	# MusicManager.play_game_music() # this will be handled by the first level
+	MusicManager.stop_music()
 	get_tree().change_scene_to_file(levels[0])
 	
 func end_level():
 	current_level += 1
 	if current_level >= levels.size():
-		current_level = 0 #temporary, there should be a game_end function that resets everything
+		MusicManager.play_menu_music()
 		get_tree().change_scene_to_file("res://scenes/end_menu.tscn")
-		#switch to end screen or boss level
 	else:
+		MusicManager.play_game_music()
 		get_tree().change_scene_to_file("res://scenes/levels/between_levels.tscn")
 		
 func next_level():
+	MusicManager.play_game_music()
 	get_tree().change_scene_to_file(levels[current_level])
 
 func to_leaderboard():
+	MusicManager.play_menu_music()
 	get_tree().change_scene_to_file("res://scenes/scores_menu.tscn")
 	
 func to_main_menu():
+	MusicManager.play_menu_music()
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+
+func game_over():
+	Engine.time_scale = 0.2
+	get_tree().create_timer(2.0, true, false, true).timeout.connect(
+		func(): 
+			get_tree().change_scene_to_file("res://scenes/end_menu.tscn")
+			Engine.time_scale = 1.0
+			MusicManager.play_menu_music()
+	)
+
+func quit_game():
+	get_tree().quit(0)
 
 func get_weapon(weapon_type: String,owner_type: String) -> PackedScene:
 	return weapons[weapon_type][owner_type]
