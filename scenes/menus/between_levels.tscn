@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b5k3yuagvo4y2"]
 
-[ext_resource type="Script" uid="uid://qiysu13fcf4a" path="res://scripts/core/between_levels.gd" id="1_y6mtv"]
-[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/background.tscn" id="2_htb6i"]
-[ext_resource type="StyleBox" uid="uid://c7m40oknfr3pt" path="res://style_box_flat.res" id="2_w8iej"]
+[ext_resource type="Script" uid="uid://qiysu13fcf4a" path="res://scripts/core/between_levels.gd" id="1_ak5iy"]
+[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/levels/background.tscn" id="2_jb2ls"]
+[ext_resource type="StyleBox" uid="uid://c7m40oknfr3pt" path="res://style_box_flat.res" id="3_hg8mc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_htb6i"]
 bg_color = Color(0.09, 0.09, 0.09, 1)
@@ -39,9 +39,9 @@ offset_right = 270.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_y6mtv")
+script = ExtResource("1_ak5iy")
 
-[node name="Background" parent="." unique_id=1301492950 instance=ExtResource("2_htb6i")]
+[node name="Background" parent="." unique_id=1301492950 instance=ExtResource("2_jb2ls")]
 position = Vector2(-270, 1)
 
 [node name="HealthButton" type="Button" parent="." unique_id=1764910608]
@@ -52,7 +52,7 @@ offset_top = 106.0
 offset_right = 142.0
 offset_bottom = 506.0
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = ExtResource("2_w8iej")
+theme_override_styles/normal = ExtResource("3_hg8mc")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_htb6i")
 theme_override_styles/hover = SubResource("StyleBoxFlat_w8iej")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_htb6i")
@@ -73,7 +73,7 @@ offset_top = 106.0
 offset_right = 442.0
 offset_bottom = 506.0
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = ExtResource("2_w8iej")
+theme_override_styles/normal = ExtResource("3_hg8mc")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_htb6i")
 theme_override_styles/hover = SubResource("StyleBoxFlat_w8iej")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_htb6i")
@@ -94,7 +94,7 @@ offset_top = 106.0
 offset_right = 735.0
 offset_bottom = 506.0
 theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = ExtResource("2_w8iej")
+theme_override_styles/normal = ExtResource("3_hg8mc")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_htb6i")
 theme_override_styles/hover = SubResource("StyleBoxFlat_w8iej")
 theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_htb6i")

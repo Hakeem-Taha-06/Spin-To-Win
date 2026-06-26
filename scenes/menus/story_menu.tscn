@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cyq4l5k6roy6t"]
+
+[ext_resource type="Script" uid="uid://ca2fx6dd1y6dv" path="res://scripts/core/story_menu.gd" id="1_y3ttr"]
+
+[node name="StoryMenu" type="Control" unique_id=189628554]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y3ttr")
+
+[node name="background" type="ColorRect" parent="." unique_id=1322687699]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -29.0
+offset_right = 1165.0
+offset_bottom = 670.0
+color = Color(0.023529412, 0.043137256, 0.10980392, 1)
+
+[node name="ColorRect" type="ColorRect" parent="background" unique_id=1903501165]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 145.0
+offset_right = 1202.0
+offset_bottom = 864.0
+color = Color(0, 0.03500004, 0.15, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="background" unique_id=148644136]
+layout_mode = 0
+offset_left = -21.0
+offset_top = 379.0
+offset_right = 1225.0
+offset_bottom = 795.0
+color = Color(0, 0.07000008, 0.3, 1)
+
+[node name="Label" type="Label" parent="." unique_id=1133871462]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 120.0
+offset_right = 1027.0
+offset_bottom = 462.0
+theme_override_font_sizes/font_size = 32
+text = "You are a knight that is VERY SERIOUS about spinning.
+However, the kingdom you serve is very strict about spinning ad has banned it
+which really bugs you.
+
+One night, a witch places a spell on you that states that:
+\"if the person hit by this spell spins for four nights straight, the king dies\"
+
+Your eyes gleam with the hope of taking revenge on the kingdom, so you start
+spinning, only to be met by some gaurds that try to stop you..."
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="." unique_id=2007306965]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 0
+offset_left = 429.0
+offset_top = 510.0
+offset_right = 679.0
+offset_bottom = 570.0
+theme_override_font_sizes/font_size = 32
+text = "Continue"

@@ -38,7 +38,7 @@ func _on_start_button_pressed():
 	var selected_weapon: String = weapon_list.get_item_text(weapon_list.selected)
 	GameState.player_weapon = selected_weapon
 	GameState.save_settings()
-	GameState.start_game()
+	GameState.to_story_menu()
 	
 func _on_quit_button_pressed():
 	GameState.quit_game()

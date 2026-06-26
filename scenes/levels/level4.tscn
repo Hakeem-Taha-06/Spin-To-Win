@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bc4icodgua3uh"]
 
 [ext_resource type="Script" uid="uid://ciukh1drmxwb7" path="res://scripts/core/level.gd" id="1_o34q2"]
-[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/background.tscn" id="2_e127x"]
+[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/levels/background.tscn" id="2_e127x"]
 [ext_resource type="PackedScene" uid="uid://c3xxx5ctyg4c" path="res://scenes/player.tscn" id="2_rdsj4"]
 [ext_resource type="PackedScene" uid="uid://8ypu72xp6ivd" path="res://scenes/enemy.tscn" id="3_e127x"]
-[ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/arena.tscn" id="4_heu5o"]
+[ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/levels/arena.tscn" id="4_heu5o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bfxgj"]
 font_size = 40
@@ -85,7 +85,7 @@ offset_bottom = 280.0
 
 [node name="DialogText" type="Label" parent="DialogBox" unique_id=1814116699]
 layout_mode = 2
-text = "    Enemy Knight: unless this dancing ends, knight!"
+text = "    Gaurd: Unless this dancing ends, knight!"
 label_settings = SubResource("LabelSettings_rdsj4")
 
 [node name="PauseMenu" type="VBoxContainer" parent="." unique_id=1392312225]

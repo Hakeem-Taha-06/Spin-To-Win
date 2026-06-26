@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://ciukh1drmxwb7" path="res://scripts/core/level.gd" id="1_t275y"]
 [ext_resource type="PackedScene" uid="uid://c3xxx5ctyg4c" path="res://scenes/player.tscn" id="2_f5jb5"]
-[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/background.tscn" id="2_frjko"]
+[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/levels/background.tscn" id="2_frjko"]
 [ext_resource type="PackedScene" uid="uid://8ypu72xp6ivd" path="res://scenes/enemy.tscn" id="3_frjko"]
-[ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/arena.tscn" id="4_f7rt6"]
+[ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/levels/arena.tscn" id="4_f7rt6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bfxgj"]
 font_size = 40
@@ -79,7 +79,7 @@ offset_bottom = 280.0
 
 [node name="DialogText" type="Label" parent="DialogBox" unique_id=1098062151]
 layout_mode = 2
-text = "    Enemy Knight: The prince will rage and show his might"
+text = "    Gaurd: The prince will rage and show his might"
 label_settings = SubResource("LabelSettings_f5jb5")
 
 [node name="PauseMenu" type="VBoxContainer" parent="." unique_id=1708698460]

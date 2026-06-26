@@ -63,10 +63,10 @@ func end_level():
 	current_level += 1
 	if current_level >= levels.size():
 		MusicManager.play_menu_music()
-		get_tree().change_scene_to_file("res://scenes/end_menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/menus/end_menu.tscn")
 	else:
 		MusicManager.play_game_music()
-		get_tree().change_scene_to_file("res://scenes/levels/between_levels.tscn")
+		get_tree().change_scene_to_file("res://scenes/menus/between_levels.tscn")
 		
 func next_level():
 	MusicManager.play_game_music()
@@ -74,17 +74,21 @@ func next_level():
 
 func to_leaderboard():
 	MusicManager.play_menu_music()
-	get_tree().change_scene_to_file("res://scenes/scores_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/scores_menu.tscn")
 	
 func to_main_menu():
 	MusicManager.play_menu_music()
-	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
+
+func to_story_menu():
+	MusicManager.stop_music()
+	get_tree().change_scene_to_file("res://scenes/menus/story_menu.tscn")
 
 func game_over():
 	Engine.time_scale = 0.2
 	get_tree().create_timer(2.0, true, false, true).timeout.connect(
 		func(): 
-			get_tree().change_scene_to_file("res://scenes/end_menu.tscn")
+			get_tree().change_scene_to_file("res://scenes/menus/end_menu.tscn")
 			Engine.time_scale = 1.0
 			MusicManager.play_menu_music()
 	)

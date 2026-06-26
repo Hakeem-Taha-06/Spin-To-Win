@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://ciukh1drmxwb7" path="res://scripts/core/level.gd" id="1_bfxgj"]
 [ext_resource type="PackedScene" uid="uid://c3xxx5ctyg4c" path="res://scenes/player.tscn" id="1_dd0lh"]
 [ext_resource type="PackedScene" uid="uid://8ypu72xp6ivd" path="res://scenes/enemy.tscn" id="2_bfxgj"]
-[ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/arena.tscn" id="3_dywbp"]
-[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/background.tscn" id="5_dywbp"]
+[ext_resource type="PackedScene" uid="uid://cgc3rhung1oxs" path="res://scenes/levels/arena.tscn" id="3_dywbp"]
+[ext_resource type="PackedScene" uid="uid://b1c5e7rt160yd" path="res://scenes/levels/background.tscn" id="5_dywbp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bfxgj"]
 font_size = 40
@@ -70,7 +70,7 @@ offset_bottom = 280.0
 
 [node name="DialogText" type="Label" parent="DialogBox" unique_id=660870575]
 layout_mode = 2
-text = "    Enemy Knight: All this spinning must end tonight"
+text = "    Gaurd: All this spinning must end tonight"
 label_settings = SubResource("LabelSettings_2r1tl")
 
 [node name="PauseMenu" type="VBoxContainer" parent="." unique_id=2095082612]
