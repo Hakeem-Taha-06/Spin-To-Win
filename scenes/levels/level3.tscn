@@ -81,3 +81,29 @@ offset_bottom = 280.0
 layout_mode = 2
 text = "    Enemy Knight: The prince will rage and show his might"
 label_settings = SubResource("LabelSettings_f5jb5")
+
+[node name="PauseMenu" type="VBoxContainer" parent="." unique_id=1708698460]
+custom_minimum_size = Vector2(200, 200)
+propagate_maximum_size = false
+offset_left = -101.0
+offset_top = -92.0
+offset_right = 99.0
+offset_bottom = 108.0
+
+[node name="ResumeButton" type="Button" parent="PauseMenu" unique_id=1022423648]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
+[node name="MenuButton" type="Button" parent="PauseMenu" unique_id=943458214]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Main  Menu"
+
+[node name="QuitButton" type="Button" parent="PauseMenu" unique_id=953681676]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Quit Game"

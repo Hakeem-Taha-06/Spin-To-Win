@@ -4,6 +4,10 @@ extends Node2D
 @onready var combo_label: Label = $ComboLabel
 @onready var score_label: Label = $ScoreLabel
 @onready var dialog_box: PanelContainer = $DialogBox
+@onready var pause_menu: VBoxContainer = $PauseMenu
+@onready var resume_button: Button = $PauseMenu/ResumeButton
+@onready var menu_button: Button = $PauseMenu/MenuButton
+@onready var quit_button: Button = $PauseMenu/QuitButton
 
 var label_visible_cooldown := 2.0
 var label_visible_timer := 0.0
@@ -26,6 +30,11 @@ func _ready() -> void:
 	SignalBus.enemy_died.connect(_on_enemy_died)
 	
 	dialog_box.visible = true
+	pause_menu.visible = false
+	
+	resume_button.pressed.connect(_on_resume_button_pressed)
+	menu_button.pressed.connect(_on_menu_button_pressed)
+	quit_button.pressed.connect(_on_quit_button_pressed)
 	
 	await level_start_cooldown()
 
@@ -60,11 +69,11 @@ func _process(delta: float) -> void:
 	cooldowns(delta)
 	
 	if not paused and Input.is_action_just_pressed("ui_cancel"):
-		Engine.time_scale = 0.0
-		paused = true
+		pause()
 	elif paused and Input.is_action_just_pressed("ui_cancel"):
-		Engine.time_scale = 1.0
-		paused = false
+		unpause()
+		
+	
 
 #made so that when the player dies they can call it to add the score immediately
 func add_score():
@@ -102,3 +111,24 @@ func cooldowns(delta: float):
 		else:
 			GameState.total_score += accumulative_score
 			GameState.end_level()
+
+func pause():
+	Engine.time_scale = 0.0
+	paused = true
+	pause_menu.visible = true
+	dialog_box.visible = true
+	
+func unpause():
+	Engine.time_scale = 1.0
+	paused = false
+	pause_menu.visible = false
+	dialog_box.visible = false
+	
+func _on_resume_button_pressed():
+	unpause()
+	
+func _on_menu_button_pressed():
+	GameState.to_main_menu()
+	
+func _on_quit_button_pressed():
+	GameState.quit_game()
