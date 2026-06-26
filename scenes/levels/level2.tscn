@@ -18,6 +18,20 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_d5djh"]
 font_size = 44
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5djh"]
+bg_color = Color(0, 0, 0, 0.4)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ok6xr"]
+bg_color = Color(0.09000006, 0, 0.6, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Level" type="Node2D" unique_id=1818319842]
 script = ExtResource("1_niitk")
 
@@ -73,7 +87,7 @@ offset_bottom = 280.0
 
 [node name="DialogText" type="Label" parent="DialogBox" unique_id=1362121192]
 layout_mode = 2
-text = "   Gaurd: Lest the king dies of woe and fright"
+text = "   Guard: Lest the king dies of woe and fright"
 label_settings = SubResource("LabelSettings_d5djh")
 
 [node name="PauseMenu" type="VBoxContainer" parent="." unique_id=1979686805]
@@ -101,3 +115,13 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit Game"
+
+[node name="SpinBar" type="ProgressBar" parent="." unique_id=56674306]
+offset_left = -510.0
+offset_top = 268.0
+offset_right = 506.0
+offset_bottom = 293.0
+theme_override_styles/background = SubResource("StyleBoxFlat_d5djh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ok6xr")
+value = 50.0
+show_percentage = false

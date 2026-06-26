@@ -56,6 +56,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not is_instance_valid(player):
+		return
 	var distance_to_player : float = abs((global_position - player.global_position).length())
 	match CURRENT_STATE:
 		State.IDLE:
@@ -98,6 +100,9 @@ func _draw() -> void:
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
+	if not is_instance_valid(player):
+		return
+	
 	match CURRENT_STATE:
 		State.IDLE:
 			apply_damp()
@@ -111,8 +116,9 @@ func _physics_process(delta: float) -> void:
 			face_player()
 			if linear_velocity.length() < MAX_ATTACK_LINEAR_SPEED:
 				apply_force(facing_direction*MOVE_FORCE*ATTACK_FORCE_MULT)
+			apply_torque(200) # very slight spin
 			
-	queue_redraw()
+	#queue_redraw()
 
 
 func cooldowns(delta: float):

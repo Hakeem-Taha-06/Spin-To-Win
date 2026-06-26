@@ -18,6 +18,20 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_f5jb5"]
 font_size = 44
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5jb5"]
+bg_color = Color(0, 0, 0, 0.4)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_frjko"]
+bg_color = Color(0.09000006, 0, 0.6, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Level" type="Node2D" unique_id=1818319842]
 script = ExtResource("1_t275y")
 
@@ -79,7 +93,7 @@ offset_bottom = 280.0
 
 [node name="DialogText" type="Label" parent="DialogBox" unique_id=1098062151]
 layout_mode = 2
-text = "    Gaurd: The prince will rage and show his might"
+text = "    Guard: The prince will rage and show his might"
 label_settings = SubResource("LabelSettings_f5jb5")
 
 [node name="PauseMenu" type="VBoxContainer" parent="." unique_id=1708698460]
@@ -107,3 +121,13 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit Game"
+
+[node name="SpinBar" type="ProgressBar" parent="." unique_id=506792673]
+offset_left = -510.0
+offset_top = 268.0
+offset_right = 506.0
+offset_bottom = 293.0
+theme_override_styles/background = SubResource("StyleBoxFlat_f5jb5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_frjko")
+value = 50.0
+show_percentage = false

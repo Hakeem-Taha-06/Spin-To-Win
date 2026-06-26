@@ -8,6 +8,7 @@ extends Node2D
 @onready var resume_button: Button = $PauseMenu/ResumeButton
 @onready var menu_button: Button = $PauseMenu/MenuButton
 @onready var quit_button: Button = $PauseMenu/QuitButton
+@onready var spin_bar: ProgressBar = $SpinBar
 
 var label_visible_cooldown := 2.0
 var label_visible_timer := 0.0
@@ -22,6 +23,12 @@ var combo_timer := 0.0
 var combo_cooldown := 3.0
 var in_combo_time := false
 var combo_label_start_scale = Vector2.ONE
+var spin_cooldown := 3.0
+var spin_timer := 3.0
+var is_spinning := true
+const SPIN_THRESHOLD := 0.5
+
+var player_dead := false
 
 var paused := false
 
@@ -35,6 +42,9 @@ func _ready() -> void:
 	resume_button.pressed.connect(_on_resume_button_pressed)
 	menu_button.pressed.connect(_on_menu_button_pressed)
 	quit_button.pressed.connect(_on_quit_button_pressed)
+	
+	spin_bar.min_value = 0.0
+	spin_bar.max_value = 1.0
 	
 	await level_start_cooldown()
 
@@ -54,6 +64,8 @@ func level_start_cooldown():
 
 func _process(delta: float) -> void:
 	
+	check_spin(delta)
+	
 	if get_tree().get_nodes_in_group("enemy").is_empty() and not in_level_end_cooldown:
 		in_level_end_cooldown = true
 		level_end_timer = level_end_cooldown
@@ -72,9 +84,24 @@ func _process(delta: float) -> void:
 		pause()
 	elif paused and Input.is_action_just_pressed("ui_cancel"):
 		unpause()
-		
-	
 
+func check_spin(delta: float):
+	var player : Player = get_tree().get_first_node_in_group("player")
+	if player == null:
+		return
+	
+	is_spinning = abs(player.angular_velocity) >= SPIN_THRESHOLD
+	
+	if is_spinning:
+		spin_timer = spin_cooldown
+	else:
+		spin_timer -= delta
+		if spin_timer <= 0 and not player_dead:
+			player.trigger_death()
+			player_dead = true
+	
+	spin_bar.value = spin_timer / spin_cooldown
+	
 #made so that when the player dies they can call it to add the score immediately
 func add_score():
 	GameState.total_score += accumulative_score
@@ -109,7 +136,8 @@ func cooldowns(delta: float):
 		if level_end_timer >= 0:
 			level_end_timer -= delta
 		else:
-			GameState.total_score += accumulative_score
+			if not player_dead:
+				GameState.total_score += accumulative_score
 			GameState.end_level()
 
 func pause():

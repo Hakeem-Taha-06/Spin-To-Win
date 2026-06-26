@@ -18,6 +18,20 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_rdsj4"]
 font_size = 44
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rdsj4"]
+bg_color = Color(0, 0, 0, 0.4)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e127x"]
+bg_color = Color(0.09000006, 0, 0.6, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Level" type="Node2D" unique_id=1818319842]
 script = ExtResource("1_o34q2")
 
@@ -30,6 +44,15 @@ disable_mode = 2
 
 [node name="enemy1" parent="." unique_id=641408842 instance=ExtResource("3_e127x")]
 position = Vector2(331, 191)
+DETECT_RANGE = null
+ATTACK_RANGE = null
+ATTACK_FORCE_MULT = null
+TORQUE = null
+MOVE_FORCE = null
+MAX_LINEAR_SPEED = null
+MAX_ATTACK_LINEAR_SPEED = null
+MAX_ANGULAR_SPEED = null
+debug_line_length = null
 
 [node name="Arena" parent="." unique_id=712916083 instance=ExtResource("4_heu5o")]
 
@@ -37,9 +60,27 @@ position = Vector2(331, 191)
 
 [node name="enemy2" parent="." unique_id=1039635145 instance=ExtResource("3_e127x")]
 position = Vector2(-406, -129)
+DETECT_RANGE = null
+ATTACK_RANGE = null
+ATTACK_FORCE_MULT = null
+TORQUE = null
+MOVE_FORCE = null
+MAX_LINEAR_SPEED = null
+MAX_ATTACK_LINEAR_SPEED = null
+MAX_ANGULAR_SPEED = null
+debug_line_length = null
 
 [node name="enemy3" parent="." unique_id=876766075 instance=ExtResource("3_e127x")]
 position = Vector2(-411, 202)
+DETECT_RANGE = null
+ATTACK_RANGE = null
+ATTACK_FORCE_MULT = null
+TORQUE = null
+MOVE_FORCE = null
+MAX_LINEAR_SPEED = null
+MAX_ATTACK_LINEAR_SPEED = null
+MAX_ANGULAR_SPEED = null
+debug_line_length = null
 
 [node name="MessageLabel" type="Label" parent="." unique_id=1889330081]
 offset_left = -119.0
@@ -70,12 +111,39 @@ vertical_alignment = 1
 
 [node name="enemy4" parent="." unique_id=854574208 instance=ExtResource("3_e127x")]
 position = Vector2(329, 35)
+DETECT_RANGE = null
+ATTACK_RANGE = null
+ATTACK_FORCE_MULT = null
+TORQUE = null
+MOVE_FORCE = null
+MAX_LINEAR_SPEED = null
+MAX_ATTACK_LINEAR_SPEED = null
+MAX_ANGULAR_SPEED = null
+debug_line_length = null
 
 [node name="enemy5" parent="." unique_id=1807847757 instance=ExtResource("3_e127x")]
 position = Vector2(-409, 39)
+DETECT_RANGE = null
+ATTACK_RANGE = null
+ATTACK_FORCE_MULT = null
+TORQUE = null
+MOVE_FORCE = null
+MAX_LINEAR_SPEED = null
+MAX_ATTACK_LINEAR_SPEED = null
+MAX_ANGULAR_SPEED = null
+debug_line_length = null
 
 [node name="enemy6" parent="." unique_id=1066623146 instance=ExtResource("3_e127x")]
 position = Vector2(328, -113)
+DETECT_RANGE = null
+ATTACK_RANGE = null
+ATTACK_FORCE_MULT = null
+TORQUE = null
+MOVE_FORCE = null
+MAX_LINEAR_SPEED = null
+MAX_ATTACK_LINEAR_SPEED = null
+MAX_ANGULAR_SPEED = null
+debug_line_length = null
 
 [node name="DialogBox" type="PanelContainer" parent="." unique_id=944267645]
 offset_left = -521.0
@@ -85,7 +153,7 @@ offset_bottom = 280.0
 
 [node name="DialogText" type="Label" parent="DialogBox" unique_id=1814116699]
 layout_mode = 2
-text = "    Gaurd: Unless this dancing ends, knight!"
+text = "    Guard: Unless this dancing ends, knight!"
 label_settings = SubResource("LabelSettings_rdsj4")
 
 [node name="PauseMenu" type="VBoxContainer" parent="." unique_id=1392312225]
@@ -113,3 +181,13 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Quit Game"
+
+[node name="SpinBar" type="ProgressBar" parent="." unique_id=1085559178]
+offset_left = -510.0
+offset_top = 268.0
+offset_right = 506.0
+offset_bottom = 293.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rdsj4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_e127x")
+value = 50.0
+show_percentage = false

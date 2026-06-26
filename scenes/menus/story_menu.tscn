@@ -42,15 +42,15 @@ offset_top = 120.0
 offset_right = 1027.0
 offset_bottom = 462.0
 theme_override_font_sizes/font_size = 32
-text = "You are a knight that is VERY SERIOUS about spinning.
-However, the kingdom you serve is very strict about spinning ad has banned it
+text = "You are a knight that is VERY SERIOUS about spinning. (you even wear a tutu)
+However, the kingdom you serve is very strict about spinning and has banned it
 which really bugs you.
 
 One night, a witch places a spell on you that states that:
 \"if the person hit by this spell spins for four nights straight, the king dies\"
 
 Your eyes gleam with the hope of taking revenge on the kingdom, so you start
-spinning, only to be met by some gaurds that try to stop you..."
+spinning, only to be met by some guards that try to stop you..."
 horizontal_alignment = 1
 
 [node name="ContinueButton" type="Button" parent="." unique_id=2007306965]

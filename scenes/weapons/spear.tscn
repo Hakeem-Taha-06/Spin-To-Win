@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b8q7uxdi64aq6"]
 
-[ext_resource type="Script" uid="uid://dg00cyvrycby2" path="res://scripts/weapons/axe.gd" id="1_f4mc5"]
+[ext_resource type="Script" uid="uid://d2yjyevwrfc83" path="res://scripts/weapons/spear.gd" id="1_osdwm"]
 [ext_resource type="Script" uid="uid://cf1cjkchbkv2f" path="res://scripts/entities/hit_box.gd" id="2_osdwm"]
 [ext_resource type="Texture2D" uid="uid://d37e3i7r04il8" path="res://assets/sprites/player/spinny_spear.png" id="2_pwwd2"]
 
@@ -12,7 +12,7 @@ collision_layer = 2
 collision_mask = 2
 gravity_scale = 0.0
 freeze = true
-script = ExtResource("1_f4mc5")
+script = ExtResource("1_osdwm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=2014773401]
 position = Vector2(-34, -14)

@@ -124,7 +124,7 @@ theme_override_font_sizes/font_size = 32
 text = "- Move with the arrow keys or WASD              - YOU MUST KEEP SPINNING, if you stop spinning for
                                                                       more than 3 seconds, you lose
 
-- Spin with Q & E or Z & X                              - Each hit increases your combo mutliplier 
+- Spin with Q & E or Z & X                              - Each hit increases your combo multiplier 
                                                                      which multiplies the score you get when
                                                                      killing an enemy
 "

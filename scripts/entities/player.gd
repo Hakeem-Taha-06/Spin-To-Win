@@ -99,7 +99,7 @@ func handle_linear_velocity():
 		if abs(linear_velocity.y) < MAX_LINEAR_SPEED:
 			apply_force(Vector2(0.0, input.y * LINEAR_SPEED * v_multiplier))
 		if v_dot < 0:
-			brake_offset.y = sign(linear_velocity.x) * BRAKE_OFFSET
+			brake_offset.y = sign(linear_velocity.y) * BRAKE_OFFSET
 			brake_effect.emitting = true
 		else:
 			brake_effect.emitting = false

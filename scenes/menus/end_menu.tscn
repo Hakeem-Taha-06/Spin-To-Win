@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1cj7xpna2roh"]
 
-[ext_resource type="Script" uid="uid://b7a5yo5pgbil0" path="res://scripts/core/end_menu.gd" id="1_c01dn"]
+[ext_resource type="Script" uid="uid://b7a5yo5pgbil0" path="res://scripts/core/end_menu.gd" id="1_cgki5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_felse"]
 font_size = 40
@@ -12,7 +12,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_c01dn")
+script = ExtResource("1_cgki5")
+
+[node name="background" type="ColorRect" parent="." unique_id=252634948]
+layout_mode = 0
+offset_left = -17.0
+offset_top = -29.0
+offset_right = 1165.0
+offset_bottom = 670.0
+color = Color(0.023529412, 0.043137256, 0.10980392, 1)
+
+[node name="ColorRect" type="ColorRect" parent="background" unique_id=344985629]
+layout_mode = 0
+offset_left = -7.0
+offset_top = 145.0
+offset_right = 1202.0
+offset_bottom = 864.0
+color = Color(0, 0.03500004, 0.15, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="background" unique_id=1803938996]
+layout_mode = 0
+offset_left = -21.0
+offset_top = 379.0
+offset_right = 1225.0
+offset_bottom = 795.0
+color = Color(0, 0.07000008, 0.3, 1)
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=1356233811]
 layout_mode = 0

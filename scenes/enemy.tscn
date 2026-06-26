@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8ypu72xp6ivd"]
 
 [ext_resource type="Script" uid="uid://cxnlgkae2u1rh" path="res://scripts/entities/enemy.gd" id="1_7p1mj"]
-[ext_resource type="Texture2D" uid="uid://b2jpic6l3gsnf" path="res://assets/sprites/Top2.png" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://do4yaktxwnddk" path="res://assets/sprites/player/spinny_knight.png" id="2_md0e3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md0e3"]
 bg_color = Color(0, 0, 0, 0.3254902)
@@ -18,13 +18,13 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_md0e3"]
-radius = 19.0
+radius = 23.021729
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bmj3m"]
-radius = 19.104973
+radius = 23.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_felse"]
-radius = 18.110771
+radius = 23.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_felse"]
 particle_flag_disable_z = true
@@ -63,8 +63,9 @@ shape = SubResource("CircleShape2D_md0e3")
 debug_color = Color(0.9932235, 0, 0.2474781, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1057105963]
-position = Vector2(-7.4505806e-07, -3.874302e-07)
-scale = Vector2(2.181831, 2.274237)
+position = Vector2(0, -2.9999995)
+rotation = 3.1415927
+scale = Vector2(2.7, 2.813)
 texture = ExtResource("2_md0e3")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1718928008]
